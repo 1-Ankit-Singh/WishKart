@@ -1,16 +1,17 @@
 package com.androidproject.wishkart
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.androidproject.wishkart.auth.LoginActivity
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
 import com.github.appintro.model.SliderPagerBuilder
 
 class IntroActivity : AppIntro2() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         showIntroSlides()
@@ -32,7 +33,8 @@ class IntroActivity : AppIntro2() {
     }
 
     private fun goToLogin(){
-        Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this,LoginActivity::class.java))
+        finish()
     }
 
     private fun showIntroSlides(){
@@ -55,16 +57,16 @@ class IntroActivity : AppIntro2() {
             .backgroundColorRes(R.color.pink_light)
             .build()
         val introFour = SliderPagerBuilder()
-            .title("Barter")
-            .description("Exchange Items")
-            .imageDrawable(R.drawable.barter)
-            .backgroundColorRes(R.color.pink_light)
-            .build()
-        val introFive = SliderPagerBuilder()
             .title("Donate")
             .description("Donate to NGOs")
             .imageDrawable(R.drawable.donate)
             .backgroundColorRes(R.color.purple_light)
+            .build()
+        val introFive = SliderPagerBuilder()
+            .title("Barter")
+            .description("Exchange Items")
+            .imageDrawable(R.drawable.barter)
+            .backgroundColorRes(R.color.pink_light)
             .build()
         addSlide(AppIntroFragment.createInstance(introOne))
         addSlide(AppIntroFragment.createInstance(introTwo))

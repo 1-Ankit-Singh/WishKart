@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.androidproject.wishkart">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +11,12 @@
         android:roundIcon="@drawable/logo_with_white_background"
         android:supportsRtl="true"
         android:theme="@style/Theme.WishKart">
+        <activity
+            android:name=".auth.OtpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".IntroActivity"
             android:exported="false" />
