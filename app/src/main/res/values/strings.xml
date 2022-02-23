@@ -4,4 +4,9 @@
     <string name="verify_number_hint">Please enter your mobile number. You will get a SMS including a verification code.</string>
     <string name="enter_phone_number">Enter Phone Number</string>
     <string name="next">Next</string>
+    <string name="sign_in_as">Sign in as</string>
+    <string name="individual">Individual</string>
+    <string name="or">OR</string>
+    <string name="ngo">NGO</string>
+    <string name="user">User</string>
 </resources>

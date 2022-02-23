@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishKart">
         <activity
+            android:name=".auth.UserTypeActivity"
+            android:exported="false" />
+        <activity
             android:name=".auth.OtpActivity"
             android:exported="false" />
         <activity

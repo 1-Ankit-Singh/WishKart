@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.androidproject.wishkart.auth.LoginActivity
+import com.androidproject.wishkart.auth.UserTypeActivity
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
@@ -33,7 +34,7 @@ class IntroActivity : AppIntro2() {
     }
 
     private fun goToLogin(){
-        startActivity(Intent(this,LoginActivity::class.java))
+        startActivity(Intent(this, UserTypeActivity::class.java))
         finish()
     }
 

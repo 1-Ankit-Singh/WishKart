@@ -8,6 +8,8 @@ import androidx.core.widget.addTextChangedListener
 import com.androidproject.wishkart.databinding.ActivityLoginBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+const val USER_TYPE = "userType"
+
 class LoginActivity : AppCompatActivity() {
     // Initializing Variables
     private lateinit var loginActivity: ActivityLoginBinding
