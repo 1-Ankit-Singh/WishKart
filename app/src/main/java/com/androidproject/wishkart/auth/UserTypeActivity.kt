@@ -17,13 +17,19 @@ class UserTypeActivity : AppCompatActivity() {
 
         userTypeActivity.individual.setOnClickListener {
             userType = "Individual"
-            startActivity(Intent(this, LoginActivity::class.java).putExtra(USER_TYPE, userType))
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+                    .putExtra(USER_TYPE_LOGIN, userType)
+            )
             finish()
         }
 
         userTypeActivity.ngo.setOnClickListener {
             userType = "NGO"
-            startActivity(Intent(this, LoginActivity::class.java).putExtra(USER_TYPE, userType))
+            startActivity(
+                Intent(this, LoginActivity::class.java)
+                    .putExtra(USER_TYPE_LOGIN, userType)
+            )
             finish()
         }
     }

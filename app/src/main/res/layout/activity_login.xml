@@ -38,7 +38,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
                 android:contentDescription="@drawable/logo"
-                android:src="@drawable/shop"
+                android:src="@drawable/user_number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:text="@string/verify_you_number"
+                    android:text="@string/verify_your_number"
                     android:textColor="#515151"
                     android:textSize="20sp"
                     android:textStyle="bold" />

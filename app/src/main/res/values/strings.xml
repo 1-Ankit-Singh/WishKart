@@ -1,12 +1,30 @@
 <resources>
     <string name="app_name">WishKart</string>
-    <string name="verify_you_number">Verify You Number</string>
-    <string name="verify_number_hint">Please enter your mobile number. You will get a SMS including a verification code.</string>
-    <string name="enter_phone_number">Enter Phone Number</string>
-    <string name="next">Next</string>
     <string name="sign_in_as">Sign in as</string>
     <string name="individual">Individual</string>
     <string name="or">OR</string>
     <string name="ngo">NGO</string>
     <string name="user">User</string>
+    <string name="verify_your_number">Verify Your Number</string>
+    <string name="verify_number_hint">Please enter your mobile number. You will get a SMS including a verification code.</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="next">Next</string>
+    <string name="verify_otp_details">Waiting to automatically detect an SMS sent to\n +919818170957 Wrong Number?</string>
+    <string name="waiting_text">Waiting to automatically detect an SMS sent to\n %s Wrong Number?</string>
+    <string name="hint">------</string>
+    <string name="enter_6_digit_code">Enter 6-digit code</string>
+    <string name="verify">Verify</string>
+    <string name="resend_sms">Resend SMS</string>
+    <string name="verify_number">Verify %s</string>
+    <string name="seconds_remaining">"Seconds remaining: %d"</string>
+    <string name="profile_info">Profile Info</string>
+    <string name="please_fill_all_the_below_details_correctly_and_carefully">Please fill all the below details correctly and carefully</string>
+    <string name="type_your_name_here">Type your name here</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="type_your_street_address_here">Type your street address here</string>
+    <string name="type_your_city_name_here">Type your city name here</string>
+    <string name="type_your_pincode_here">Type your PinCode here</string>
+    <string name="type_your_country_name_here">Type your country name here</string>
+    <string name="ngo_certificate_number">NGO\'s certificate number</string>
+    <string name="upload_your_ngo_certificate">Upload your NGO\'s certificate</string>
 </resources>

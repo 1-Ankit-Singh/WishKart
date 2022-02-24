@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.SignUpActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:context=".auth.SignUpActivity">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/profile_info"
+                    android:textColor="@color/pink"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="@string/please_fill_all_the_below_details_correctly_and_carefully"
+                    android:textSize="16sp" />
+
+
+                <EditText
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_edit_text"
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawablePadding="8dp"
+                    android:elevation="2dp"
+                    android:hint="@string/type_your_name_here"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/userPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_edit_text"
+                    android:drawablePadding="8dp"
+                    android:elevation="2dp"
+                    android:padding="8dp"
+                    android:text="@string/phone_number"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:drawableStartCompat="@drawable/ic_contact" />
+
+                <EditText
+                    android:id="@+id/userStreetAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_edit_text"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="8dp"
+                    android:elevation="2dp"
+                    android:hint="@string/type_your_street_address_here"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/userCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_edit_text"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="8dp"
+                    android:elevation="2dp"
+                    android:hint="@string/type_your_city_name_here"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/userPinCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_edit_text"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="8dp"
+                    android:elevation="2dp"
+                    android:hint="@string/type_your_pincode_here"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/userCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_edit_text"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="8dp"
+                    android:elevation="2dp"
+                    android:hint="@string/type_your_country_name_here"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/userCertificateImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_above_doc"
+                    android:contentDescription="@drawable/user_ngo_certificate"
+                    android:padding="2dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/user_ngo_certificate" />
+
+                <TextView
+                    android:id="@+id/userCertificateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_below_doc"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="@string/upload_your_ngo_certificate"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/userCertificate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/background_edit_text"
+                    android:drawableStart="@drawable/ic_certificate"
+                    android:drawablePadding="8dp"
+                    android:elevation="2dp"
+                    android:hint="@string/ngo_certificate_number"
+                    android:inputType="text|number"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:enabled="false"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/next"
+                    android:textAllCaps="true"
+                    android:textColor="#fff"
+                    android:textSize="20sp"
+                    android:textStyle="normal"
+                    app:cornerRadius="44dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ImageView2"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:contentDescription="@drawable/user1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:srcCompat="@drawable/user1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

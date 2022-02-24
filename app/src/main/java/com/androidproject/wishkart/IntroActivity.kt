@@ -3,9 +3,7 @@ package com.androidproject.wishkart
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.androidproject.wishkart.auth.LoginActivity
 import com.androidproject.wishkart.auth.UserTypeActivity
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
@@ -33,12 +31,12 @@ class IntroActivity : AppIntro2() {
         Log.d("Intro", "Changed")
     }
 
-    private fun goToLogin(){
+    private fun goToLogin() {
         startActivity(Intent(this, UserTypeActivity::class.java))
         finish()
     }
 
-    private fun showIntroSlides(){
+    private fun showIntroSlides() {
         val introOne = SliderPagerBuilder()
             .title("Welcome")
             .description("Welcome to WishKart\n\nSell, purchase, donate and exchange items\nwithout any hassle")
@@ -48,25 +46,25 @@ class IntroActivity : AppIntro2() {
         val introTwo = SliderPagerBuilder()
             .title("Sell")
             .description("Sell any item")
-            .imageDrawable(R.drawable.sell)
+            .imageDrawable(R.drawable.intro_sell)
             .backgroundColorRes(R.color.purple_light)
             .build()
         val introThree = SliderPagerBuilder()
             .title("Buy")
             .description("Buy available items")
-            .imageDrawable(R.drawable.buy)
+            .imageDrawable(R.drawable.intro_buy)
             .backgroundColorRes(R.color.pink_light)
             .build()
         val introFour = SliderPagerBuilder()
             .title("Donate")
             .description("Donate to NGOs")
-            .imageDrawable(R.drawable.donate)
+            .imageDrawable(R.drawable.intro_donate)
             .backgroundColorRes(R.color.purple_light)
             .build()
         val introFive = SliderPagerBuilder()
             .title("Barter")
             .description("Exchange Items")
-            .imageDrawable(R.drawable.barter)
+            .imageDrawable(R.drawable.intro_barter)
             .backgroundColorRes(R.color.pink_light)
             .build()
         addSlide(AppIntroFragment.createInstance(introOne))

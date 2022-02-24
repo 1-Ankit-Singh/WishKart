@@ -8,20 +8,20 @@ import androidx.core.widget.addTextChangedListener
 import com.androidproject.wishkart.databinding.ActivityLoginBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-const val USER_TYPE = "userType"
+const val USER_TYPE_LOGIN = "userType"
 
 class LoginActivity : AppCompatActivity() {
     // Initializing Variables
     private lateinit var loginActivity: ActivityLoginBinding
-    private lateinit var phoneNumber: String
+    private lateinit var userType: String
     private lateinit var countryCode: String
+    private lateinit var phoneNumber: String
     private lateinit var alertDialogBuilder: MaterialAlertDialogBuilder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginActivity = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(loginActivity.root)
-
 
         loginActivity.phoneNumber.addTextChangedListener {
             loginActivity.next.isEnabled = !(it.isNullOrEmpty() || it.length < 10)
@@ -74,7 +74,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showLoginActivity() {
-        startActivity(Intent(this, OtpActivity::class.java).putExtra(PHONE_NUMBER, phoneNumber))
+        userType = intent.getStringExtra(USER_TYPE_LOGIN).toString()
+        startActivity(
+            Intent(this, OtpActivity::class.java)
+                .putExtra(PHONE_NUMBER, phoneNumber)
+                .putExtra(USER_TYPE_OTP, userType)
+        )
         finish()
     }
 }
