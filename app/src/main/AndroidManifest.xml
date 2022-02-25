@@ -3,6 +3,7 @@
     package="com.androidproject.wishkart">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,11 @@
         android:roundIcon="@drawable/logo_with_white_background"
         android:supportsRtl="true"
         android:theme="@style/Theme.WishKart">
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.WishKart.NoActionBar" />
         <activity
             android:name=".auth.SignUpActivity"
             android:exported="false" />

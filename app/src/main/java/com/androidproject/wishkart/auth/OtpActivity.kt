@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.androidproject.wishkart.MainActivity
 import com.androidproject.wishkart.R
 import com.androidproject.wishkart.databinding.ActivityOtpBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -174,13 +175,12 @@ class OtpActivity : AppCompatActivity() {
                     if (::progressDialog.isInitialized) {
                         progressDialog.dismiss()
                     }
-                    showSignUpActivity()
-                    /*//First Time Login
                     if (task.result.additionalUserInfo?.isNewUser == true) {
+                        //First Time Login
                         showSignUpActivity()
                     } else {
                         showHomeActivity()
-                    }*/
+                    }
                 } else {
                     if (::progressDialog.isInitialized) {
                         progressDialog.dismiss()
@@ -224,9 +224,9 @@ class OtpActivity : AppCompatActivity() {
     }
 
     private fun showHomeActivity() {
-        //val intent = Intent(this, MainActivity::class.java)
-        //startActivity(intent)
-        //finish()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     // This method will send a code to a given phone number as an SMS

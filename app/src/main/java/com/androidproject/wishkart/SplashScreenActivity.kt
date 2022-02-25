@@ -12,12 +12,11 @@ class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*if (auth.currentUser == null) {
+        if (auth.currentUser == null) {
             startActivity(Intent(this, IntroActivity::class.java))
         } else {
-            Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
-        }*/
-        startActivity(Intent(this, IntroActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         finish()
     }
 }
