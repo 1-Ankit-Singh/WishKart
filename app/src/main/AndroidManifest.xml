@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishKart">
         <activity
+            android:name=".deals.DealsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"

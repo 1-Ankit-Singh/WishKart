@@ -212,7 +212,7 @@
                     android:drawablePadding="8dp"
                     android:elevation="2dp"
                     android:hint="@string/ngo_certificate_number"
-                    android:inputType="text|number"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:minHeight="48dp"
                     android:padding="8dp"

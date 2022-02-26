@@ -12,14 +12,33 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.androidproject.wishkart.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_sell"
+        android:name="com.androidproject.wishkart.ui.sell.SellFragment"
+        android:label="@string/menu_sell"
+        tools:layout="@layout/fragment_sell" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.androidproject.wishkart.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_buy"
+        android:name="com.androidproject.wishkart.ui.buy.BuyFragment"
+        android:label="@string/menu_buy"
+        tools:layout="@layout/fragment_buy" />
+
+    <fragment
+        android:id="@+id/nav_donate"
+        android:name="com.androidproject.wishkart.ui.donate.DonateFragment"
+        android:label="@string/menu_donate"
+        tools:layout="@layout/fragment_donate" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.androidproject.wishkart.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_help"
+        android:name="com.androidproject.wishkart.ui.help.HelpFragment"
+        android:label="@string/menu_help"
+        tools:layout="@layout/fragment_help" />
+
 </navigation>
