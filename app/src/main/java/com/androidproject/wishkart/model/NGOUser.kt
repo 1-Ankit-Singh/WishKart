@@ -1,6 +1,7 @@
 package com.androidproject.wishkart.model
 
 class NGOUser(
+    val uid: String,
     val userType: String,
     val userName: String,
     val userPhoneNumber: String,

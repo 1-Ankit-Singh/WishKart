@@ -102,6 +102,7 @@ class SignUpActivity : AppCompatActivity() {
             }
             else -> {
                 val ngoUser = NGOUser(
+                    auth.uid!!,
                     userType,
                     userName,
                     phoneNumber,
@@ -152,6 +153,7 @@ class SignUpActivity : AppCompatActivity() {
             }
             else -> {
                 val individualUser = IndividualUser(
+                    auth.uid!!,
                     userType,
                     userName,
                     phoneNumber,
