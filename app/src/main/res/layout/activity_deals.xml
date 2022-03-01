@@ -13,6 +13,10 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:elevation="10dp"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
         android:theme="@style/Theme.WishKart.AppBarOverlay"
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
         app:title="WishKart" />
@@ -30,17 +34,17 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your" />
+            android:text="@string/menu_sell" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other" />
+            android:text="@string/menu_buy" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Donatable" />
+            android:text="@string/menu_donate" />
 
 
     </com.google.android.material.tabs.TabLayout>

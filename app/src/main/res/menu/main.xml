@@ -2,8 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/your_deals"
+        android:id="@+id/yourDeals"
         android:orderInCategory="100"
         android:title="@string/your_deals"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/notification"
+        android:orderInCategory="100"
+        android:title="@string/notification"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/rateUs"
+        android:orderInCategory="100"
+        android:title="@string/rate_us"
         app:showAsAction="never" />
 </menu>

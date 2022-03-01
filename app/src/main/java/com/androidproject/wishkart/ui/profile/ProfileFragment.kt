@@ -11,10 +11,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.androidproject.wishkart.MainActivity
 import com.androidproject.wishkart.R
+import com.androidproject.wishkart.auth.LoginActivity
 import com.androidproject.wishkart.databinding.FragmentProfileBinding
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -59,27 +61,22 @@ class ProfileFragment : Fragment() {
             profileBinding.userStreetAddress.isClickable = true
             profileBinding.userStreetAddress.isFocusableInTouchMode = true
             profileBinding.userStreetAddress.isFocusable = true
-            //profileBinding.userStreetAddress.requestFocus()
 
             profileBinding.userCity.isClickable = true
             profileBinding.userCity.isFocusableInTouchMode = true
             profileBinding.userCity.isFocusable = true
-            //profileBinding.userCity.requestFocus()
 
             profileBinding.userPinCode.isClickable = true
             profileBinding.userPinCode.isFocusableInTouchMode = true
             profileBinding.userPinCode.isFocusable = true
-            //profileBinding.userPinCode.requestFocus()
 
             profileBinding.userCountry.isClickable = true
             profileBinding.userCountry.isFocusableInTouchMode = true
             profileBinding.userCountry.isFocusable = true
-            //profileBinding.userCountry.requestFocus()
 
             profileBinding.userCertificate.isClickable = true
             profileBinding.userCertificate.isFocusableInTouchMode = true
             profileBinding.userCertificate.isFocusable = true
-            //profileBinding.userCertificate.requestFocus()
 
             profileBinding.cancelBtn.visibility = View.VISIBLE
             profileBinding.submitBtn.visibility = View.VISIBLE
@@ -112,6 +109,10 @@ class ProfileFragment : Fragment() {
             profileBinding.submitBtn.visibility = View.GONE
         }
 
+        profileBinding.logout.setOnClickListener {
+            signOutAlertDialogBox(it)
+        }
+
         profileBinding.submitBtn.setOnClickListener {
             if (userType == "Individual") {
                 updateIndividualUserData()
@@ -119,6 +120,10 @@ class ProfileFragment : Fragment() {
             if (userType == "NGO") {
                 updateNGOData()
             }
+        }
+
+        profileBinding.deleteAccount.setOnClickListener {
+            deleteAccount()
         }
 
         profileBinding.userCertificateImage.setOnClickListener {
@@ -133,6 +138,51 @@ class ProfileFragment : Fragment() {
         }
 
         return profileBinding.root
+    }
+
+    private fun deleteAccount() {
+        /*ref.delete()
+            .addOnSuccessListener {
+                FirebaseAuth.getInstance().currentUser!!.delete().addOnCompleteListener {
+                    Toast.makeText(
+                        requireContext(),
+                        "Account Deleted Successfully.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    activity?.startActivity(Intent(requireContext(), LoginActivity::class.java))
+                    activity?.finish()
+                }
+            }.addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Something went wrong, Please try again !!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }*/
+    }
+
+    private fun signOutAlertDialogBox(view: View) {
+        //Instantiate builder variable
+        val builder = AlertDialog.Builder(view.context)
+        // set title
+        builder.setTitle("WishKart")
+        //set content area
+        builder.setMessage("Are you sure, you want to logout?")
+        //set negative button
+        builder.setPositiveButton(
+            "Yes"
+        ) { _, _ ->
+            auth.signOut()
+            activity?.startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.finish()
+        }
+        //set positive button
+        builder.setNegativeButton(
+            "No"
+        ) { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 
     private fun updateNGOData() {
@@ -259,11 +309,13 @@ class ProfileFragment : Fragment() {
     }
 
     private fun checkUserType() {
+        progressDialog = createProgressDialog("Loading Data")
+        progressDialog.show()
         ref.get().addOnSuccessListener {
             if (it.exists()) {
                 if (auth.uid == it.get("uid")) {
                     userType = it.getString("userType").toString()
-                    if (userType == "Individual User") {
+                    if (userType == "Individual") {
                         fetchIndividualUserData()
                     }
                     if (userType == "NGO") {
@@ -278,73 +330,68 @@ class ProfileFragment : Fragment() {
             Toast.makeText(
                 requireContext(),
                 "Something went wrong, Please try again!!",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         }
     }
 
     private fun fetchNGOData() {
         ref.get().addOnSuccessListener {
-            if (it.exists()) {
-                if (auth.uid == it.get("uid")) {
-                    userType = it.getString("userType").toString()
-                    userName = it.getString("userName").toString()
-                    phoneNumber = it.getString("userPhoneNumber").toString()
-                    userStreetAddress = it.getString("userStreetAddress").toString()
-                    userCity = it.getString("userCity").toString()
-                    userPinCode = it.getString("userPinCode").toString()
-                    userCountry = it.getString("userCountry").toString()
-                    userCertificateUrl = it.getString("userCertificateUrl").toString()
-                    userCertificateNumber = it.getString("userCertificateNumber").toString()
+            userType = it.getString("userType").toString()
+            userName = it.getString("userName").toString()
+            phoneNumber = it.getString("userPhoneNumber").toString()
+            userStreetAddress = it.getString("userStreetAddress").toString()
+            userCity = it.getString("userCity").toString()
+            userPinCode = it.getString("userPinCode").toString()
+            userCountry = it.getString("userCountry").toString()
+            userCertificateUrl = it.getString("userCertificateUrl").toString()
+            userCertificateNumber = it.getString("userCertificateNumber").toString()
 
-                    profileBinding.userName.setText(userName)
-                    profileBinding.userPhoneNumber.text = phoneNumber
-                    profileBinding.userStreetAddress.setText(userStreetAddress)
-                    profileBinding.userCity.setText(userCity)
-                    profileBinding.userPinCode.setText(userPinCode)
-                    profileBinding.userCountry.setText(userCountry)
-                    Picasso.get()
-                        .load(userCertificateUrl)
-                        .placeholder(R.drawable.user_ngo_certificate)
-                        .error(R.drawable.user_ngo_certificate)
-                        .into(profileBinding.userCertificateImage)
-                    profileBinding.userCertificate.setText(userCertificateNumber)
-                }
-            }
+            profileBinding.userName.setText(userName)
+            profileBinding.userPhoneNumber.text = phoneNumber
+            profileBinding.userStreetAddress.setText(userStreetAddress)
+            profileBinding.userCity.setText(userCity)
+            profileBinding.userPinCode.setText(userPinCode)
+            profileBinding.userCountry.setText(userCountry)
+            Picasso.get()
+                .load(userCertificateUrl)
+                .placeholder(R.drawable.user_ngo_certificate)
+                .error(R.drawable.user_ngo_certificate)
+                .into(profileBinding.userCertificateImage)
+            profileBinding.userCertificateText.text = getString(R.string.your_ngo_certificate)
+            profileBinding.userCertificate.setText(userCertificateNumber)
+            progressDialog.dismiss()
         }.addOnFailureListener {
             Toast.makeText(
                 requireContext(),
                 "Something went wrong, Please try again!!",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         }
     }
 
     private fun fetchIndividualUserData() {
         ref.get().addOnSuccessListener {
-            if (it.exists()) {
-                if (auth.uid == it.get("uid")) {
-                    userType = it.getString("userType").toString()
-                    userName = it.getString("userName").toString()
-                    phoneNumber = it.getString("userPhoneNumber").toString()
-                    userStreetAddress = it.getString("userStreetAddress").toString()
-                    userCity = it.getString("userCity").toString()
-                    userPinCode = it.getString("userPinCode").toString()
-                    userCountry = it.getString("userCountry").toString()
+            userType = it.getString("userType").toString()
+            userName = it.getString("userName").toString()
+            phoneNumber = it.getString("userPhoneNumber").toString()
+            userStreetAddress = it.getString("userStreetAddress").toString()
+            userCity = it.getString("userCity").toString()
+            userPinCode = it.getString("userPinCode").toString()
+            userCountry = it.getString("userCountry").toString()
 
-                    profileBinding.userName.setText(userName)
-                    profileBinding.userPhoneNumber.text = phoneNumber
-                    profileBinding.userStreetAddress.setText(userStreetAddress)
-                    profileBinding.userCity.setText(userCity)
-                    profileBinding.userPinCode.setText(userPinCode)
-                    profileBinding.userCountry.setText(userCountry)
-                }
-            }
+            profileBinding.userName.setText(userName)
+            profileBinding.userPhoneNumber.text = phoneNumber
+            profileBinding.userStreetAddress.setText(userStreetAddress)
+            profileBinding.userCity.setText(userCity)
+            profileBinding.userPinCode.setText(userPinCode)
+            profileBinding.userCountry.setText(userCountry)
+            progressDialog.dismiss()
         }.addOnFailureListener {
             Toast.makeText(
                 requireContext(),
                 "Something went wrong, Please try again!!",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
         }
 
@@ -400,7 +447,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun startUpload(filePath: Uri) {
-        progressDialog = createProgressDialog()
+        progressDialog = createProgressDialog("Uploading Image...")
         progressDialog.show()
         val ref = storage.reference.child("NGOCertificates/" + auth.uid.toString())
         val uploadTask = ref.putFile(filePath)
@@ -432,11 +479,11 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun createProgressDialog(): ProgressDialog {
+    private fun createProgressDialog(message: String): ProgressDialog {
         return ProgressDialog(requireContext()).apply {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
-            setMessage("Uploading Image...")
+            setMessage(message)
         }
     }
 }

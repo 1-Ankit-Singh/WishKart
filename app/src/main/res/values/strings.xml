@@ -34,6 +34,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="your_deals">Your Deals</string>
+    <string name="notification">Notification</string>
+    <string name="rate_us">Rate Us</string>
     <string name="menu_home">Home</string>
     <string name="menu_sell">Sell</string>
     <string name="menu_buy">Buy</string>
@@ -48,4 +50,6 @@
     <string name="certificate_number">Certificate Number</string>
     <string name="cancel">Cancel</string>
     <string name="submit">Submit</string>
+    <string name="your_ngo_certificate">Your NGO\'s Certificate</string>
+    <string name="delete_account">Delete Account</string>
 </resources>
