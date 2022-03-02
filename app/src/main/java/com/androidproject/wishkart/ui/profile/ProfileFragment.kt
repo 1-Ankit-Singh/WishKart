@@ -83,6 +83,7 @@ class ProfileFragment : Fragment() {
         }
 
         profileBinding.cancelBtn.setOnClickListener {
+            checkUserType()
             editable = false
 
             profileBinding.userStreetAddress.isClickable = false

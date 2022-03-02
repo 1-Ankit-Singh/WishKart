@@ -52,4 +52,11 @@
     <string name="submit">Submit</string>
     <string name="your_ngo_certificate">Your NGO\'s Certificate</string>
     <string name="delete_account">Delete Account</string>
+    <string name="sell_buy_and_donate">Sell, Buy and Donate</string>
+    <string name="product_details">Product Details</string>
+    <string name="product_name">Product Name</string>
+    <string name="select_category">Select Category</string>
+    <string name="min_price">Min. Price</string>
+    <string name="max_price">Max. Price</string>
+    <string name="upload_images">Upload Images</string>
 </resources>
