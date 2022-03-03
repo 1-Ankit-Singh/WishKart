@@ -33,7 +33,7 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="your_deals">Your Deals</string>
+    <string name="your_deals">WishKart</string>
     <string name="notification">Notification</string>
     <string name="rate_us">Rate Us</string>
     <string name="menu_home">Home</string>
@@ -59,4 +59,6 @@
     <string name="min_price">Min. Price</string>
     <string name="max_price">Max. Price</string>
     <string name="upload_images">Upload Images</string>
+    <string name="product_description">Product Description</string>
+    <string name="nothing_to_show_here">Nothing to show here</string>
 </resources>

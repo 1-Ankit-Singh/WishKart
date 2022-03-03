@@ -6,169 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".ui.donate.DonateFragment">
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/donateRv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="3" />
 
+    <ImageView
+        android:id="@+id/nothingToHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@drawable/nothing_to_show_here"
+        android:paddingStart="44dp"
+        android:paddingTop="44dp"
+        android:paddingEnd="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nothing_to_show_here" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nothing_to_show_here"
+        android:textColor="@color/bluish_black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/nothingToHere"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:text="@string/product_details"
-                android:textColor="@color/pink"
-                android:textSize="28sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/product_name"
-                android:textColor="@color/bluish_black"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/productName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/background_edit_text"
-                android:drawablePadding="8dp"
-                android:elevation="8dp"
-                android:hint="@string/product_name"
-                android:inputType="text"
-                android:maxLines="1"
-                android:minHeight="48dp"
-                android:padding="8dp"
-                android:singleLine="true"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/select_category"
-                android:textColor="@color/bluish_black"
-                android:textSize="16sp" />
-
-            <Spinner
-                android:id="@+id/category"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/background"
-                android:elevation="8dp"
-                android:spinnerMode="dropdown" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/upload_images"
-                android:textColor="@color/bluish_black"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/uploadImage1"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/background"
-                android:clickable="true"
-                android:contentDescription="@drawable/user_ngo_certificate"
-                android:elevation="8dp"
-                android:focusable="true"
-                android:padding="2dp"
-                app:srcCompat="@drawable/user_ngo_certificate" />
-
-            <ImageView
-                android:id="@+id/uploadImage2"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/background"
-                android:clickable="true"
-                android:contentDescription="@drawable/user_ngo_certificate"
-                android:elevation="8dp"
-                android:focusable="true"
-                android:padding="2dp"
-                app:srcCompat="@drawable/user_ngo_certificate" />
-
-            <ImageView
-                android:id="@+id/uploadImage3"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/background"
-                android:clickable="true"
-                android:contentDescription="@drawable/user_ngo_certificate"
-                android:elevation="8dp"
-                android:focusable="true"
-                android:padding="2dp"
-                app:srcCompat="@drawable/user_ngo_certificate" />
-
-            <ImageView
-                android:id="@+id/uploadImage4"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/background"
-                android:clickable="true"
-                android:contentDescription="@drawable/user_ngo_certificate"
-                android:elevation="8dp"
-                android:focusable="true"
-                android:padding="2dp"
-                app:srcCompat="@drawable/user_ngo_certificate" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="@string/submit"
-                android:textAllCaps="true"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:textStyle="normal"
-                app:cornerRadius="44dp" />
-
-        </LinearLayout>
-
-    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/donateNewProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="32dp"
+        android:contentDescription="@drawable/ic_add"
+        android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

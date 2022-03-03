@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishKart">
         <activity
+            android:name=".ui.donate.DonateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.sell.SellActivity"
+            android:exported="false" />
+        <activity
             android:name=".deals.DealsActivity"
             android:exported="false" />
         <activity

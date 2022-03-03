@@ -99,7 +99,9 @@
                     android:drawablePadding="8dp"
                     android:elevation="8dp"
                     android:hint="@string/type_your_street_address_here"
-                    android:inputType="textPostalAddress"
+                    android:inputType="textPostalAddress|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="5"
                     android:minHeight="48dp"
                     android:padding="8dp"
                     android:textSize="20sp" />
