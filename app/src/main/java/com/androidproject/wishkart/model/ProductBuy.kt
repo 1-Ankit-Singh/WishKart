@@ -1,10 +1,13 @@
 package com.androidproject.wishkart.model
 
-class ProductSell(
+class ProductBuy(
     val uid: String,
+    val productOwnerName: String,
+    val productOwnerStreetAddress: String,
     val productOwnerCity: String,
     val productOwnerPinCode: String,
     val productOwnerCountry: String,
+    val productOwnerPhoneNumber: String,
     val productName: String,
     val productCategory: String,
     val productMinPrice: String,

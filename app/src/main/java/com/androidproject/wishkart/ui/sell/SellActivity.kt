@@ -62,6 +62,9 @@ class SellActivity : AppCompatActivity() {
     private val storage = FirebaseStorage.getInstance()
     private val database = FirebaseFirestore.getInstance()
     private lateinit var flag: String
+    private lateinit var productOwnerCity: String
+    private lateinit var productOwnerPinCode: String
+    private lateinit var productOwnerCountry: String
     private lateinit var productName: String
     var productCategory: String = "None"
     private lateinit var productDescription: String
@@ -71,6 +74,7 @@ class SellActivity : AppCompatActivity() {
     private lateinit var productUrl2: String
     private lateinit var productUrl3: String
     private lateinit var productUrl4: String
+    private var productStatus: String = "Available"
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,6 +83,7 @@ class SellActivity : AppCompatActivity() {
         setContentView(sellBinding.root)
         setSupportActionBar(sellBinding.toolbarSell)
 
+        getProductOwnerDetails()
         val bloodGroupAdapter =
             ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, categoryOptions)
         sellBinding.category.adapter = bloodGroupAdapter
@@ -148,6 +153,9 @@ class SellActivity : AppCompatActivity() {
                 }
                 val productSell = ProductSell(
                     auth.uid!!,
+                    productOwnerCity,
+                    productOwnerPinCode,
+                    productOwnerCountry,
                     productName,
                     productCategory,
                     productMinPrice,
@@ -156,7 +164,8 @@ class SellActivity : AppCompatActivity() {
                     productUrl1,
                     productUrl2,
                     productUrl3,
-                    productUrl4
+                    productUrl4,
+                    productStatus
                 )
                 database.collection("users/${auth.uid.toString()}/products")
                     .document("$productCategory$productName").set(productSell)
@@ -171,6 +180,22 @@ class SellActivity : AppCompatActivity() {
                     }
             }
         }
+    }
+
+    private fun getProductOwnerDetails() {
+        database.collection("users").document(auth.uid!!).get()
+            .addOnSuccessListener {
+                productOwnerCity = it.getString("userCity").toString()
+                productOwnerPinCode = it.getString("userPinCode").toString()
+                productOwnerCountry = it.getString("userCountry").toString()
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    this,
+                    "Something went wrong, Please try again !!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 
     private fun addProductToProductList(productSell: ProductSell) {

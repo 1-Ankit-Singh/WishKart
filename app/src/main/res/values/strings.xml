@@ -61,4 +61,9 @@
     <string name="upload_images">Upload Images</string>
     <string name="product_description">Product Description</string>
     <string name="nothing_to_show_here">Nothing to show here</string>
+    <string name="product_category">Product Category</string>
+    <string name="product_price">Product Price</string>
+    <string name="product_location">Product Location</string>
+    <string name="price">Price: %s - %s</string>
+    <string name="location">%s, %s</string>
 </resources>

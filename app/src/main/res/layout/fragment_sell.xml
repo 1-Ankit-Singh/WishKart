@@ -18,7 +18,7 @@
         tools:itemCount="3" />
 
     <ImageView
-        android:id="@+id/nothingToHere"
+        android:id="@+id/nothingToShowHereImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@drawable/nothing_to_show_here"
@@ -31,13 +31,14 @@
         app:srcCompat="@drawable/nothing_to_show_here" />
 
     <TextView
+        android:id="@+id/nothingToShowHereText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nothing_to_show_here"
         android:textColor="@color/bluish_black"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/nothingToHere"
+        app:layout_constraintBottom_toBottomOf="@+id/nothingToShowHereImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
