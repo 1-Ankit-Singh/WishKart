@@ -11,33 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="3" />
 
     <ImageView
-        android:id="@+id/nothingToHere"
+        android:id="@+id/nothingToShowHereImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@drawable/nothing_to_show_here"
         android:paddingStart="44dp"
         android:paddingTop="44dp"
         android:paddingEnd="44dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/nothing_to_show_here" />
 
     <TextView
+        android:id="@+id/nothingToShowHereText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nothing_to_show_here"
         android:textColor="@color/bluish_black"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/nothingToHere"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/nothingToShowHereImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />

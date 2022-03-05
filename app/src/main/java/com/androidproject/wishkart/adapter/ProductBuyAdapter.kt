@@ -8,16 +8,16 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.wishkart.R
 import com.androidproject.wishkart.databinding.ListProductItemBinding
-import com.androidproject.wishkart.model.ProductSell
+import com.androidproject.wishkart.model.ProductBuy
 import com.squareup.picasso.Picasso
 
-class ProductSellAdapter(
-    private val productsArrayList: ArrayList<ProductSell>,
+class ProductBuyAdapter(
+    private val productsArrayList: ArrayList<ProductBuy>,
     val context: Context
-) : RecyclerView.Adapter<ProductSellAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ProductBuyAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var productSellAdapter = ListProductItemBinding.bind(itemView)
+        var productBuyAdapter = ListProductItemBinding.bind(itemView)
     }
 
     override fun onCreateViewHolder(
@@ -29,15 +29,15 @@ class ProductSellAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.productSellAdapter.productName.text = productsArrayList[position].productName
-        holder.productSellAdapter.productCategory.text = productsArrayList[position].productCategory
-        holder.productSellAdapter.productPrice.text =
+        holder.productBuyAdapter.productName.text = productsArrayList[position].productName
+        holder.productBuyAdapter.productCategory.text = productsArrayList[position].productCategory
+        holder.productBuyAdapter.productPrice.text =
             context.getString(
                 R.string.price,
                 productsArrayList[position].productMinPrice,
                 productsArrayList[position].productMaxPrice
             )
-        holder.productSellAdapter.location.text =
+        holder.productBuyAdapter.location.text =
             context.getString(
                 R.string.location,
                 productsArrayList[position].productOwnerCity,
@@ -45,7 +45,7 @@ class ProductSellAdapter(
             )
         Picasso.get()
             .load(productsArrayList[position].productUrl1)
-            .into(holder.productSellAdapter.product)
+            .into(holder.productBuyAdapter.product)
         holder.itemView.setOnClickListener {
             //val intent = Intent(context, NewsDetailsActivity::class.java)
             //intent.putExtra("title", productsArrayList[position].productName)

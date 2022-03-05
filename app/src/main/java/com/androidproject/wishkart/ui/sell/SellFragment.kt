@@ -1,5 +1,6 @@
 package com.androidproject.wishkart.ui.sell
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,12 +16,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
-class SellFragment : Fragment() {
+class SellFragment : Fragment(){
     // Initializing Variables
     private lateinit var sellBinding: FragmentSellBinding
     private var productSellArrayList = arrayListOf<ProductSell>()
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,14 +39,16 @@ class SellFragment : Fragment() {
     }
 
     private fun fetchData() {
+        progressDialog = createProgressDialog()
+        progressDialog.show()
         database.collection("users/${auth.uid.toString()}/products")
             .get()
             .addOnSuccessListener {
                 val list: List<DocumentSnapshot> = it.documents
-                if(list.isNotEmpty()) {
-                    sellBinding.sellRv.visibility = View.VISIBLE
-                    sellBinding.nothingToShowHereImage.visibility = View.GONE
-                    sellBinding.nothingToShowHereText.visibility = View.GONE
+                if(list.isEmpty()) {
+                    sellBinding.sellRv.visibility = View.GONE
+                    sellBinding.nothingToShowHereImage.visibility = View.VISIBLE
+                    sellBinding.nothingToShowHereText.visibility = View.VISIBLE
                 }
                 for (product in list) {
                     val productSell = ProductSell(
@@ -67,6 +71,7 @@ class SellFragment : Fragment() {
                 }
                 sellBinding.sellRv.layoutManager = LinearLayoutManager(context)
                 sellBinding.sellRv.adapter = ProductSellAdapter(productSellArrayList, requireContext())
+                progressDialog.dismiss()
             }
             .addOnFailureListener {
                 Toast.makeText(
@@ -75,5 +80,13 @@ class SellFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+    }
+
+    private fun createProgressDialog(): ProgressDialog {
+        return ProgressDialog(requireContext()).apply {
+            setCancelable(false)
+            setCanceledOnTouchOutside(false)
+            setMessage("Loading Data...")
+        }
     }
 }
