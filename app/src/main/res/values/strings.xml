@@ -66,4 +66,6 @@
     <string name="product_location">Product Location</string>
     <string name="price">Price: %s - %s</string>
     <string name="location">%s, %s</string>
+    <string name="remove_product">Remove Product</string>
+    <string name="interested">Interested</string>
 </resources>
