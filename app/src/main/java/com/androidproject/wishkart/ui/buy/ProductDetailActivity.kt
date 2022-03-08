@@ -36,21 +36,38 @@ class ProductDetailActivity : AppCompatActivity() {
 
         setDataInVariables()
         setData()
-
-        val productViewPagerAdapter = ProductViewPagerAdapter(productImagesArrayList)
-        productDetailActivity.productViewPager.adapter = productViewPagerAdapter
+        addImages()
 
         productDetailActivity.interested.setOnClickListener {
 
         }
     }
 
+    private fun addImages() {
+        val productViewPagerAdapter = ProductViewPagerAdapter(productImagesArrayList)
+        productDetailActivity.productViewPager.adapter = productViewPagerAdapter
+        /*TabLayoutMediator(
+            productDetailActivity.tabDots,
+            productDetailActivity.productViewPager,
+            TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+
+            }).attach()*/
+        /*productDetailActivity.productViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                Toast.makeText(this@ProductDetailActivity, position, Toast.LENGTH_SHORT).show()
+            }
+        })*/
+    }
+
     private fun setData() {
         productDetailActivity.productName.text = productName
         productDetailActivity.productCategory.text = productCategory
-        productDetailActivity.productPrice.text = getString(R.string.price, productMinPrice, productMaxPrice)
+        productDetailActivity.productPrice.text =
+            getString(R.string.price, productMinPrice, productMaxPrice)
         productDetailActivity.productDescription.text = productDescription
-        productDetailActivity.productLocation.text = getString(R.string.location, productOwnerCity, productOwnerCountry)
+        productDetailActivity.productLocation.text =
+            getString(R.string.location, productOwnerCity, productOwnerCountry)
     }
 
     private fun setDataInVariables() {
