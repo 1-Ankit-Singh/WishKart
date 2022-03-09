@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.androidproject.wishkart.databinding.FragmentDonatableDealsBinding
+import com.androidproject.wishkart.databinding.FragmentProductGetterBinding
 
-class DonatableDealsFragment : Fragment() {
+class ProductGetterFragment : Fragment() {
     // Initializing Variables
-    private lateinit var donatableDealsBinding: FragmentDonatableDealsBinding
+    private lateinit var productGetterFragment: FragmentProductGetterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        donatableDealsBinding = FragmentDonatableDealsBinding.inflate(inflater)
-        return donatableDealsBinding.root
+        productGetterFragment = FragmentProductGetterBinding.inflate(inflater)
+        return productGetterFragment.root
     }
 }

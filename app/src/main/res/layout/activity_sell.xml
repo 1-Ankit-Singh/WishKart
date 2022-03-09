@@ -197,11 +197,11 @@
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/background"
                 android:clickable="true"
-                android:contentDescription="@drawable/product"
+                android:contentDescription="@drawable/user_product"
                 android:elevation="8dp"
                 android:focusable="true"
                 android:padding="2dp"
-                app:srcCompat="@drawable/product" />
+                app:srcCompat="@drawable/user_product" />
 
             <ImageView
                 android:id="@+id/uploadImage2"
@@ -212,11 +212,11 @@
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/background"
                 android:clickable="true"
-                android:contentDescription="@drawable/product"
+                android:contentDescription="@drawable/user_product"
                 android:elevation="8dp"
                 android:focusable="true"
                 android:padding="2dp"
-                app:srcCompat="@drawable/product" />
+                app:srcCompat="@drawable/user_product" />
 
             <ImageView
                 android:id="@+id/uploadImage3"
@@ -227,11 +227,11 @@
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/background"
                 android:clickable="true"
-                android:contentDescription="@drawable/product"
+                android:contentDescription="@drawable/user_product"
                 android:elevation="8dp"
                 android:focusable="true"
                 android:padding="2dp"
-                app:srcCompat="@drawable/product" />
+                app:srcCompat="@drawable/user_product" />
 
             <ImageView
                 android:id="@+id/uploadImage4"
@@ -242,11 +242,11 @@
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/background"
                 android:clickable="true"
-                android:contentDescription="@drawable/product"
+                android:contentDescription="@drawable/user_product"
                 android:elevation="8dp"
                 android:focusable="true"
                 android:padding="2dp"
-                app:srcCompat="@drawable/product" />
+                app:srcCompat="@drawable/user_product" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/submit"

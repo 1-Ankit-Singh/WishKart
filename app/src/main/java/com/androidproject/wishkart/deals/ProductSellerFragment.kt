@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.androidproject.wishkart.databinding.FragmentYourDealsWithOtherBinding
+import com.androidproject.wishkart.databinding.FragmentProductSellerBinding
 
-class YourDealsWithOtherFragment : Fragment() {
+class ProductSellerFragment : Fragment() {
     // Initializing Variables
-    private lateinit var yourDealsWithOtherBinding: FragmentYourDealsWithOtherBinding
+    private lateinit var productSellerFragment: FragmentProductSellerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        yourDealsWithOtherBinding = FragmentYourDealsWithOtherBinding.inflate(inflater)
-        return yourDealsWithOtherBinding.root
+        productSellerFragment = FragmentProductSellerBinding.inflate(inflater)
+        return productSellerFragment.root
     }
 }

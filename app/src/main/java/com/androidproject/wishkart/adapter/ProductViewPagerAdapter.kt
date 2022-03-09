@@ -1,5 +1,6 @@
 package com.androidproject.wishkart.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,58 +9,27 @@ import com.androidproject.wishkart.databinding.ListProductImagesBinding
 import com.androidproject.wishkart.model.ProductImages
 import com.squareup.picasso.Picasso
 
-/*class ProductViewPagerAdapter(
-    val context: Context,
-    private val productImagesArrayList: ArrayList<ProductImages>
-) : RecyclerView.Adapter<ProductViewPagerAdapter.ViewHolder>() {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var productViewPagerAdapter = ListProductImagesBinding.bind(itemView)
-    }
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ProductViewPagerAdapter.ViewHolder {
-        /*val adapter = ListProductImagesBinding.inflate(LayoutInflater.from(parent.context))
-        return ViewHolder(adapter.root)*/
-        return  ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_product_images, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: ProductViewPagerAdapter.ViewHolder, position: Int) {
-        val productImageSlider = arrayOf(
-            productImagesArrayList[position].productUrl1,
-            productImagesArrayList[position].productUrl2,
-            productImagesArrayList[position].productUrl3,
-            productImagesArrayList[position].productUrl4
-        )
-        Picasso.get().load(productImageSlider[position]).into(holder.productViewPagerAdapter.productSlidingImage)
-    }
-
-    override fun getItemCount(): Int {
-        return productImagesArrayList.size
-    }
-
-}*/
-
 class ProductViewPagerAdapter(
-    private val productImages: ArrayList<ProductImages>
+    productImages: ArrayList<ProductImages>,
+    val context: Context
 ) : PagerAdapter() {
 
+    private val productImageSlider = arrayOf(
+        productImages[0].productUrl1,
+        productImages[0].productUrl2,
+        productImages[0].productUrl3,
+        productImages[0].productUrl4
+    )
+
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val productImageSlider = arrayOf(
-            productImages[position].productUrl1,
-            productImages[position].productUrl2,
-            productImages[position].productUrl3,
-            productImages[position].productUrl4
-        )
         val slider = ListProductImagesBinding.inflate(LayoutInflater.from(container.context))
-        Picasso.get().load(productImageSlider[position]).into(slider.productSlidingImage)
+        Picasso.get().load(productImageSlider[position]).into(slider.productImages)
         container.addView(slider.root)
         return slider.root
     }
 
     override fun getCount(): Int {
-        return productImages.size
+        return productImageSlider.size
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {

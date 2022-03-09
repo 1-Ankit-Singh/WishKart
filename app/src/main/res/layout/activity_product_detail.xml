@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.sell.SellActivity">
+    tools:context=".ui.buy.ProductDetailActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarProductDetails"
@@ -39,18 +39,8 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/productViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_margin="8dp"
-                android:orientation="horizontal" />
-
-            <!--<com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabDots"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tab_selector"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp"
-                app:tabMode="fixed" />-->
+                android:layout_height="275dp"
+                android:layout_margin="8dp" />
 
             <LinearLayout
                 android:id="@+id/sliderDots"

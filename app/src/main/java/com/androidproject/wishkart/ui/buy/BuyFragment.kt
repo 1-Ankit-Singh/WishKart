@@ -1,6 +1,5 @@
 package com.androidproject.wishkart.ui.buy
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,15 +10,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidproject.wishkart.adapter.ProductBuyAdapter
 import com.androidproject.wishkart.databinding.FragmentBuyBinding
 import com.androidproject.wishkart.model.ProductBuy
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+
 
 class BuyFragment : Fragment() {
     // Initializing Variables
     private lateinit var buyBinding: FragmentBuyBinding
     private var productBuyArrayList = arrayListOf<ProductBuy>()
     private val database = FirebaseFirestore.getInstance()
-    private lateinit var progressDialog: ProgressDialog
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,8 +33,6 @@ class BuyFragment : Fragment() {
     }
 
     private fun fetchData() {
-        progressDialog = createProgressDialog()
-        progressDialog.show()
         database.collection("product")
             .get()
             .addOnSuccessListener {
@@ -44,27 +43,29 @@ class BuyFragment : Fragment() {
                     buyBinding.nothingToShowHereText.visibility = View.VISIBLE
                 }
                 for (product in list) {
-                    val productBuy = ProductBuy(
-                        product.getString("uid").toString(),
-                        product.getString("productOwnerCity").toString(),
-                        product.getString("productOwnerPinCode").toString(),
-                        product.getString("productOwnerCountry").toString(),
-                        product.getString("productName").toString(),
-                        product.getString("productCategory").toString(),
-                        product.getString("productMinPrice").toString(),
-                        product.getString("productMaxPrice").toString(),
-                        product.getString("productDescription").toString(),
-                        product.getString("productUrl1").toString(),
-                        product.getString("productUrl2").toString(),
-                        product.getString("productUrl3").toString(),
-                        product.getString("productUrl4").toString(),
-                        product.getString("productStatus").toString(),
-                    )
-                    productBuyArrayList.add(productBuy)
+                    if (auth.uid!! != product.getString("uid").toString()) {
+                        val productBuy = ProductBuy(
+                            product.getString("uid").toString(),
+                            product.getString("productOwnerCity").toString(),
+                            product.getString("productOwnerPinCode").toString(),
+                            product.getString("productOwnerCountry").toString(),
+                            product.getString("productName").toString(),
+                            product.getString("productCategory").toString(),
+                            product.getString("productMinPrice").toString(),
+                            product.getString("productMaxPrice").toString(),
+                            product.getString("productDescription").toString(),
+                            product.getString("productUrl1").toString(),
+                            product.getString("productUrl2").toString(),
+                            product.getString("productUrl3").toString(),
+                            product.getString("productUrl4").toString(),
+                            product.getString("productStatus").toString(),
+                        )
+                        productBuyArrayList.add(productBuy)
+                    }
                 }
                 buyBinding.buyRv.layoutManager = LinearLayoutManager(context)
                 buyBinding.buyRv.adapter = ProductBuyAdapter(productBuyArrayList, requireContext())
-                progressDialog.dismiss()
+                buyBinding.progressBarProductBuy.visibility = View.GONE
             }
             .addOnFailureListener {
                 Toast.makeText(
@@ -73,13 +74,5 @@ class BuyFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-    }
-
-    private fun createProgressDialog(): ProgressDialog {
-        return ProgressDialog(requireContext()).apply {
-            setCancelable(false)
-            setCanceledOnTouchOutside(false)
-            setMessage("Loading Data...")
-        }
     }
 }

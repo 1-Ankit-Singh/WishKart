@@ -1,6 +1,5 @@
 package com.androidproject.wishkart.ui.donate
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,7 +21,6 @@ class DonateFragment : Fragment() {
     private var productDonateArrayList = arrayListOf<ProductDonate>()
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
-    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +37,6 @@ class DonateFragment : Fragment() {
     }
 
     private fun fetchData() {
-        progressDialog = createProgressDialog()
-        progressDialog.show()
         database.collection("users/${auth.uid.toString()}/donate")
             .get()
             .addOnSuccessListener {
@@ -69,7 +65,7 @@ class DonateFragment : Fragment() {
                 }
                 donateBinding.donateRv.layoutManager = LinearLayoutManager(context)
                 donateBinding.donateRv.adapter = ProductDonateAdapter(productDonateArrayList, requireContext())
-                progressDialog.dismiss()
+                donateBinding.progressBarProductDonate.visibility = View.GONE
             }
             .addOnFailureListener {
                 Toast.makeText(
@@ -78,13 +74,5 @@ class DonateFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-    }
-
-    private fun createProgressDialog(): ProgressDialog {
-        return ProgressDialog(requireContext()).apply {
-            setCancelable(false)
-            setCanceledOnTouchOutside(false)
-            setMessage("Loading Data...")
-        }
     }
 }

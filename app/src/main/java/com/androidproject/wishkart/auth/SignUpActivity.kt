@@ -32,7 +32,7 @@ class SignUpActivity : AppCompatActivity() {
     private val database = FirebaseFirestore.getInstance()
     private lateinit var userType: String
     private lateinit var phoneNumber: String
-    private lateinit var userCertificateUrl: String
+    private var userCertificateUrl: String = ""
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,7 +96,7 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please enter NGO Certificate Number.", Toast.LENGTH_SHORT)
                     .show()
             }
-            (!::userCertificateUrl.isInitialized) -> {
+            (userCertificateUrl.isEmpty()) -> {
                 Toast.makeText(this, "Please upload NGO Certificate Picture.", Toast.LENGTH_SHORT)
                     .show()
             }

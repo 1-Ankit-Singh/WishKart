@@ -24,7 +24,7 @@
                 android:background="@color/bluish_black"
                 android:contentDescription="@string/product_name"
                 android:scaleType="fitXY"
-                android:src="@drawable/product" />
+                android:src="@drawable/user_product" />
 
             <TextView
                 android:id="@+id/productName"

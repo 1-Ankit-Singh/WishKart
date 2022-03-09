@@ -219,7 +219,7 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please enter NGO Certificate Number.", Toast.LENGTH_SHORT)
                     .show()
             }
-            (!::userCertificateUrl.isInitialized) -> {
+            (userCertificateUrl.isEmpty()) -> {
                 Toast.makeText(requireContext(), "Please upload NGO Certificate Picture.", Toast.LENGTH_SHORT)
                     .show()
             }

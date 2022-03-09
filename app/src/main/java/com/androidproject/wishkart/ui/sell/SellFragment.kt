@@ -1,6 +1,5 @@
 package com.androidproject.wishkart.ui.sell
 
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,7 +21,6 @@ class SellFragment : Fragment(){
     private var productSellArrayList = arrayListOf<ProductSell>()
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
-    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +37,6 @@ class SellFragment : Fragment(){
     }
 
     private fun fetchData() {
-        progressDialog = createProgressDialog()
-        progressDialog.show()
         database.collection("users/${auth.uid.toString()}/products")
             .get()
             .addOnSuccessListener {
@@ -71,7 +67,7 @@ class SellFragment : Fragment(){
                 }
                 sellBinding.sellRv.layoutManager = LinearLayoutManager(context)
                 sellBinding.sellRv.adapter = ProductSellAdapter(productSellArrayList, requireContext())
-                progressDialog.dismiss()
+                sellBinding.progressBarProductSell.visibility = View.GONE
             }
             .addOnFailureListener {
                 Toast.makeText(
@@ -80,13 +76,5 @@ class SellFragment : Fragment(){
                     Toast.LENGTH_SHORT
                 ).show()
             }
-    }
-
-    private fun createProgressDialog(): ProgressDialog {
-        return ProgressDialog(requireContext()).apply {
-            setCancelable(false)
-            setCanceledOnTouchOutside(false)
-            setMessage("Loading Data...")
-        }
     }
 }

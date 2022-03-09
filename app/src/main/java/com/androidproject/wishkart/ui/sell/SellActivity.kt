@@ -61,19 +61,19 @@ class SellActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
     private val storage = FirebaseStorage.getInstance()
     private val database = FirebaseFirestore.getInstance()
-    private lateinit var flag: String
-    private lateinit var productOwnerCity: String
-    private lateinit var productOwnerPinCode: String
-    private lateinit var productOwnerCountry: String
-    private lateinit var productName: String
+    private var flag: String = "0"
+    private var productOwnerCity: String = ""
+    private var productOwnerPinCode: String = ""
+    private var productOwnerCountry: String = ""
+    private var productName: String = ""
     var productCategory: String = "None"
-    private lateinit var productDescription: String
-    private lateinit var productMinPrice: String
-    private lateinit var productMaxPrice: String
-    private lateinit var productUrl1: String
-    private lateinit var productUrl2: String
-    private lateinit var productUrl3: String
-    private lateinit var productUrl4: String
+    private var productDescription: String = "Description is not provided"
+    private var productMinPrice: String = ""
+    private var productMaxPrice: String = ""
+    private var productUrl1: String = ""
+    private var productUrl2: String = ""
+    private var productUrl3: String = ""
+    private var productUrl4: String = ""
     private var productStatus: String = "Available"
     private lateinit var progressDialog: ProgressDialog
 
@@ -144,13 +144,10 @@ class SellActivity : AppCompatActivity() {
             productMaxPrice.isEmpty() -> {
                 Toast.makeText(this, "Please enter product max. price.", Toast.LENGTH_SHORT).show()
             }
-            (!::productUrl1.isInitialized && !::productUrl4.isInitialized && !::productUrl3.isInitialized && !::productUrl4.isInitialized) -> {
+            (productUrl1.isEmpty() or productUrl2.isEmpty() or productUrl3.isEmpty() or productUrl4.isEmpty()) -> {
                 Toast.makeText(this, "Please upload 4 product pictures.", Toast.LENGTH_SHORT).show()
             }
             else -> {
-                if (productDescription.isEmpty()) {
-                    productDescription = "Description is not provided"
-                }
                 val productSell = ProductSell(
                     auth.uid!!,
                     productOwnerCity,

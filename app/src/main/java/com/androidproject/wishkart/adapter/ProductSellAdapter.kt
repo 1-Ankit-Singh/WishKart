@@ -1,14 +1,15 @@
 package com.androidproject.wishkart.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.wishkart.R
 import com.androidproject.wishkart.databinding.ListProductItemBinding
 import com.androidproject.wishkart.model.ProductSell
+import com.androidproject.wishkart.ui.sell.SoldProductDetailActivity
 import com.squareup.picasso.Picasso
 
 class ProductSellAdapter(
@@ -47,11 +48,22 @@ class ProductSellAdapter(
             .load(productsArrayList[position].productUrl1)
             .into(holder.productSellAdapter.product)
         holder.itemView.setOnClickListener {
-            //val intent = Intent(context, NewsDetailsActivity::class.java)
-            //intent.putExtra("title", productsArrayList[position].productName)
-            //context.startActivity(intent)
-            Toast.makeText(context, productsArrayList[position].productName, Toast.LENGTH_SHORT)
-                .show()
+            val intent = Intent(context, SoldProductDetailActivity::class.java)
+            intent.putExtra("productName", productsArrayList[position].productName)
+            intent.putExtra("productCategory", productsArrayList[position].productCategory)
+            intent.putExtra("productMinPrice", productsArrayList[position].productMinPrice)
+            intent.putExtra("productMaxPrice", productsArrayList[position].productMaxPrice)
+            intent.putExtra("productDescription", productsArrayList[position].productDescription)
+            intent.putExtra("productUrl1", productsArrayList[position].productUrl1)
+            intent.putExtra("productUrl2", productsArrayList[position].productUrl2)
+            intent.putExtra("productUrl3", productsArrayList[position].productUrl3)
+            intent.putExtra("productUrl4", productsArrayList[position].productUrl4)
+            intent.putExtra("productStatus", productsArrayList[position].productStatus)
+            intent.putExtra("productOwnerCity", productsArrayList[position].productOwnerCity)
+            intent.putExtra("productOwnerPinCode", productsArrayList[position].productOwnerPinCode)
+            intent.putExtra("productOwnerCountry", productsArrayList[position].productOwnerCountry)
+            intent.putExtra("uid", productsArrayList[position].uid)
+            context.startActivity(intent)
         }
     }
 
