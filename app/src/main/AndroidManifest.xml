@@ -13,6 +13,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishKart">
         <activity
+            android:name=".donations.InterestDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".donations.DonationsDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".deals.ProductSellerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".deals.ProductGetterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".deals.ProductBuyerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".donations.DonationsActivity"
+            android:noHistory="true"
+            android:exported="false" />
+        <activity
             android:name=".ui.buy.ProductDetailActivity"
             android:exported="false" />
         <activity
@@ -29,6 +48,7 @@
             android:exported="false" />
         <activity
             android:name=".deals.DealsActivity"
+            android:noHistory="true"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

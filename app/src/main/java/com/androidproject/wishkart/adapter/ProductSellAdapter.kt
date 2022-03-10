@@ -14,8 +14,11 @@ import com.squareup.picasso.Picasso
 
 class ProductSellAdapter(
     private val productsArrayList: ArrayList<ProductSell>,
-    val context: Context
+    val context: Context,
+    private val clazz: String
 ) : RecyclerView.Adapter<ProductSellAdapter.ViewHolder>() {
+
+    private lateinit var intent: Intent
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var productSellAdapter = ListProductItemBinding.bind(itemView)
@@ -48,7 +51,9 @@ class ProductSellAdapter(
             .load(productsArrayList[position].productUrl1)
             .into(holder.productSellAdapter.product)
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, SoldProductDetailActivity::class.java)
+            if (clazz == "SoldProductDetailActivity") {
+                intent = Intent(context, SoldProductDetailActivity::class.java)
+            }
             intent.putExtra("productName", productsArrayList[position].productName)
             intent.putExtra("productCategory", productsArrayList[position].productCategory)
             intent.putExtra("productMinPrice", productsArrayList[position].productMinPrice)

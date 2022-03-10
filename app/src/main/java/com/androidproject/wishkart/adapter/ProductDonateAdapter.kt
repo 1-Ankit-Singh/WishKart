@@ -8,14 +8,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.wishkart.R
 import com.androidproject.wishkart.databinding.ListProductItemBinding
+import com.androidproject.wishkart.donations.DonationsDetailsActivity
+import com.androidproject.wishkart.donations.InterestDetailsActivity
 import com.androidproject.wishkart.model.ProductDonate
 import com.androidproject.wishkart.ui.donate.DonatedProductDetailActivity
 import com.squareup.picasso.Picasso
 
 class ProductDonateAdapter(
     private val productsArrayList: ArrayList<ProductDonate>,
-    val context: Context
+    val context: Context,
+    private val clazz: String
 ) : RecyclerView.Adapter<ProductDonateAdapter.ViewHolder>() {
+
+    private lateinit var intent: Intent
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var productDonateAdapter = ListProductItemBinding.bind(itemView)
@@ -43,7 +48,17 @@ class ProductDonateAdapter(
             .load(productsArrayList[position].productUrl1)
             .into(holder.productDonateAdapter.product)
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, DonatedProductDetailActivity::class.java)
+            when (clazz) {
+                "DonatedProductDetailActivity" -> {
+                    intent = Intent(context, DonatedProductDetailActivity::class.java)
+                }
+                "DonationsDetailsActivity" -> {
+                    intent = Intent(context, DonationsDetailsActivity::class.java)
+                }
+                "InterestDetailsActivity" -> {
+                    intent = Intent(context, InterestDetailsActivity::class.java)
+                }
+            }
             intent.putExtra("productName", productsArrayList[position].productName)
             intent.putExtra("productCategory", productsArrayList[position].productCategory)
             intent.putExtra("productDescription", productsArrayList[position].productDescription)

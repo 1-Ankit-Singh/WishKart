@@ -16,7 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.androidproject.wishkart.MainActivity
 import com.androidproject.wishkart.R
-import com.androidproject.wishkart.auth.LoginActivity
+import com.androidproject.wishkart.auth.UserTypeActivity
 import com.androidproject.wishkart.databinding.FragmentProfileBinding
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -174,7 +174,7 @@ class ProfileFragment : Fragment() {
             "Yes"
         ) { _, _ ->
             auth.signOut()
-            activity?.startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.startActivity(Intent(requireContext(), UserTypeActivity::class.java))
             activity?.finish()
         }
         //set positive button

@@ -64,7 +64,7 @@ class DonateFragment : Fragment() {
                     productDonateArrayList.add(productDonate)
                 }
                 donateBinding.donateRv.layoutManager = LinearLayoutManager(context)
-                donateBinding.donateRv.adapter = ProductDonateAdapter(productDonateArrayList, requireContext())
+                donateBinding.donateRv.adapter = ProductDonateAdapter(productDonateArrayList, requireContext(), "DonatedProductDetailActivity")
                 donateBinding.progressBarProductDonate.visibility = View.GONE
             }
             .addOnFailureListener {

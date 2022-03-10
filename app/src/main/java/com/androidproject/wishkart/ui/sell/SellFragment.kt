@@ -66,7 +66,7 @@ class SellFragment : Fragment(){
                     productSellArrayList.add(productSell)
                 }
                 sellBinding.sellRv.layoutManager = LinearLayoutManager(context)
-                sellBinding.sellRv.adapter = ProductSellAdapter(productSellArrayList, requireContext())
+                sellBinding.sellRv.adapter = ProductSellAdapter(productSellArrayList, requireContext(), "SoldProductDetailActivity")
                 sellBinding.progressBarProductSell.visibility = View.GONE
             }
             .addOnFailureListener {

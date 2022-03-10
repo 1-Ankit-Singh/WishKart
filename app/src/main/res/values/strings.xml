@@ -68,4 +68,8 @@
     <string name="location">%s, %s</string>
     <string name="remove_product">Remove Product</string>
     <string name="interested">Interested</string>
+    <string name="donations">Donations</string>
+    <string name="interest">Interest</string>
+    <string name="not_interested">Not Interested</string>
+    <string name="someone_showed_interest">%s is interested in your %s</string>
 </resources>

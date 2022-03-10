@@ -1,4 +1,4 @@
-package com.androidproject.wishkart.ui.buy
+package com.androidproject.wishkart.donations
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,36 +8,34 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
-import com.androidproject.wishkart.MainActivity
 import com.androidproject.wishkart.R
 import com.androidproject.wishkart.adapter.ProductViewPagerAdapter
-import com.androidproject.wishkart.databinding.ActivityProductDetailBinding
-import com.androidproject.wishkart.model.ProductBuy
-import com.androidproject.wishkart.model.ProductBuyer
+import com.androidproject.wishkart.databinding.ActivityDonationsDetailsBinding
+import com.androidproject.wishkart.model.ProductDonate
+import com.androidproject.wishkart.model.ProductGetter
 import com.androidproject.wishkart.model.ProductImages
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-
-class ProductDetailActivity : AppCompatActivity() {
-    // Initializing Variable
-    private lateinit var productDetailActivity: ActivityProductDetailBinding
-    private lateinit var productBuyerType: String
-    private lateinit var productBuyerName: String
-    private lateinit var productBuyerPhoneNumber: String
-    private lateinit var productBuyerStreetAddress: String
-    private lateinit var productBuyerCity: String
-    private lateinit var productBuyerPinCode: String
-    private lateinit var productBuyerCountry: String
+class DonationsDetailsActivity : AppCompatActivity() {
+    // Initializing Variables
+    private lateinit var donationsDetailsBinding: ActivityDonationsDetailsBinding
+    private lateinit var productGetterType: String
+    private lateinit var productGetterName: String
+    private lateinit var productGetterPhoneNumber: String
+    private lateinit var productGetterStreetAddress: String
+    private lateinit var productGetterCity: String
+    private lateinit var productGetterPinCode: String
+    private lateinit var productGetterCountry: String
+    private lateinit var productGetterCertificateUrl: String
+    private lateinit var productGetterCertificateNumber: String
     private lateinit var uid: String
     private lateinit var productOwnerCity: String
     private lateinit var productOwnerPinCode: String
     private lateinit var productOwnerCountry: String
     private lateinit var productName: String
     private lateinit var productCategory: String
-    private lateinit var productMinPrice: String
-    private lateinit var productMaxPrice: String
     private lateinit var productDescription: String
     private lateinit var productUrl1: String
     private lateinit var productUrl2: String
@@ -53,15 +51,15 @@ class ProductDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        productDetailActivity = ActivityProductDetailBinding.inflate(layoutInflater)
-        setContentView(productDetailActivity.root)
-        setSupportActionBar(productDetailActivity.toolbarProductDetails)
+        donationsDetailsBinding = ActivityDonationsDetailsBinding.inflate(layoutInflater)
+        setContentView(donationsDetailsBinding.root)
+        setSupportActionBar(donationsDetailsBinding.toolbarDonationsDetails)
 
         getUserData()
         setDataInVariables()
         setData()
         val productViewPagerAdapter = ProductViewPagerAdapter(productImagesArrayList, this)
-        productDetailActivity.productViewPager.adapter = productViewPagerAdapter
+        donationsDetailsBinding.productViewPager.adapter = productViewPagerAdapter
 
         dotsCount = productViewPagerAdapter.count
         dots = arrayOfNulls(dotsCount)
@@ -78,10 +76,10 @@ class ProductDetailActivity : AppCompatActivity() {
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             params.setMargins(8, 0, 8, 0)
-            productDetailActivity.sliderDots.addView(dots!![i], params)
+            donationsDetailsBinding.sliderDots.addView(dots!![i], params)
         }
         dots!![0]!!.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.dots_active))
-        productDetailActivity.productViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        donationsDetailsBinding.productViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
@@ -109,16 +107,14 @@ class ProductDetailActivity : AppCompatActivity() {
             override fun onPageScrollStateChanged(state: Int) {}
         })
 
-        productDetailActivity.interested.setOnClickListener {
-            val productBuy = ProductBuy(
+        donationsDetailsBinding.interested.setOnClickListener {
+            val productDonate = ProductDonate(
                 uid,
                 productOwnerCity,
                 productOwnerPinCode,
                 productOwnerCountry,
                 productName,
                 productCategory,
-                productMinPrice,
-                productMaxPrice,
                 productDescription,
                 productUrl1,
                 productUrl2,
@@ -126,10 +122,10 @@ class ProductDetailActivity : AppCompatActivity() {
                 productUrl4,
                 productStatus
             )
-            database.collection("users/${auth.uid.toString()}/buy")
-                .document("$productCategory$productName").set(productBuy)
+            database.collection("users/${auth.uid.toString()}/donationInterest")
+                .document("$productCategory$productName").set(productDonate)
                 .addOnSuccessListener {
-                    addToProductOwnerProductBuyerList()
+                    addToOwnerProductGetterList()
                 }.addOnFailureListener {
                     Toast.makeText(
                         this,
@@ -142,13 +138,15 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun getUserData() {
         ref.get().addOnSuccessListener {
-            productBuyerType = it.getString("userType").toString()
-            productBuyerName = it.getString("userName").toString()
-            productBuyerPhoneNumber = it.getString("userPhoneNumber").toString()
-            productBuyerStreetAddress = it.getString("userStreetAddress").toString()
-            productBuyerCity = it.getString("userCity").toString()
-            productBuyerPinCode = it.getString("userPinCode").toString()
-            productBuyerCountry = it.getString("userCountry").toString()
+            productGetterType = it.getString("userType").toString()
+            productGetterName = it.getString("userName").toString()
+            productGetterPhoneNumber = it.getString("userPhoneNumber").toString()
+            productGetterStreetAddress = it.getString("userStreetAddress").toString()
+            productGetterCity = it.getString("userCity").toString()
+            productGetterPinCode = it.getString("userPinCode").toString()
+            productGetterCountry = it.getString("userCountry").toString()
+            productGetterCertificateUrl = it.getString("userCertificateUrl").toString()
+            productGetterCertificateNumber = it.getString("userCertificateNumber").toString()
         }.addOnFailureListener {
             Toast.makeText(
                 this,
@@ -158,20 +156,20 @@ class ProductDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun addToProductOwnerProductBuyerList() {
-        val productBuyer = ProductBuyer(
+    private fun addToOwnerProductGetterList() {
+        val productGetter = ProductGetter(
             auth.uid!!,
-            productBuyerType,
-            productBuyerName,
-            productBuyerPhoneNumber,
-            productBuyerStreetAddress,
-            productBuyerCity,
-            productBuyerPinCode,
-            productBuyerCountry,
+            productGetterType,
+            productGetterName,
+            productGetterPhoneNumber,
+            productGetterStreetAddress,
+            productGetterCity,
+            productGetterPinCode,
+            productGetterCountry,
+            productGetterCertificateUrl,
+            productGetterCertificateNumber,
             productName,
             productCategory,
-            productMinPrice,
-            productMaxPrice,
             productDescription,
             productUrl1,
             productUrl2,
@@ -179,15 +177,15 @@ class ProductDetailActivity : AppCompatActivity() {
             productUrl4,
             productStatus
         )
-        database.collection("users/$uid/productBuyer")
-            .document("$productCategory$productName").set(productBuyer)
+        database.collection("users/$uid/productGetter")
+            .document("$productCategory$productName").set(productGetter)
             .addOnSuccessListener {
                 Toast.makeText(
                     this,
                     "Product Added to Buy List",
                     Toast.LENGTH_SHORT
                 ).show()
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, DonationsActivity::class.java))
                 finish()
             }.addOnFailureListener {
                 Toast.makeText(
@@ -199,20 +197,16 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setData() {
-        productDetailActivity.productName.text = productName
-        productDetailActivity.productCategory.text = productCategory
-        productDetailActivity.productPrice.text =
-            getString(R.string.price, productMinPrice, productMaxPrice)
-        productDetailActivity.productDescription.text = productDescription
-        productDetailActivity.productLocation.text =
+        donationsDetailsBinding.productName.text = productName
+        donationsDetailsBinding.productCategory.text = productCategory
+        donationsDetailsBinding.productDescription.text = productDescription
+        donationsDetailsBinding.productLocation.text =
             getString(R.string.location, productOwnerCity, productOwnerCountry)
     }
 
     private fun setDataInVariables() {
         productName = intent.getStringExtra("productName").toString()
         productCategory = intent.getStringExtra("productCategory").toString()
-        productMinPrice = intent.getStringExtra("productMinPrice").toString()
-        productMaxPrice = intent.getStringExtra("productMaxPrice").toString()
         productDescription = intent.getStringExtra("productDescription").toString()
         productUrl1 = intent.getStringExtra("productUrl1").toString()
         productUrl2 = intent.getStringExtra("productUrl2").toString()
@@ -233,7 +227,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, DonationsActivity::class.java))
         finish()
     }
 }

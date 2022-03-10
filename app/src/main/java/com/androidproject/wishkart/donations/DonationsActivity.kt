@@ -1,34 +1,31 @@
-package com.androidproject.wishkart.deals
+package com.androidproject.wishkart.donations
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.androidproject.wishkart.MainActivity
-import com.androidproject.wishkart.adapter.DealsScreenSlidePagerAdapter
-import com.androidproject.wishkart.databinding.ActivityDealsBinding
+import com.androidproject.wishkart.adapter.DonationsScreenSlidePagerAdapter
+import com.androidproject.wishkart.databinding.ActivityDonationsBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class DealsActivity : AppCompatActivity() {
+class DonationsActivity : AppCompatActivity() {
     // Initializing Variables
-    private lateinit var dealsBinding: ActivityDealsBinding
+    private lateinit var donationsBinding: ActivityDonationsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dealsBinding = ActivityDealsBinding.inflate(layoutInflater)
-        setContentView(dealsBinding.root)
-        setSupportActionBar(dealsBinding.toolbarDeals)
-        dealsBinding.viewPager.adapter = DealsScreenSlidePagerAdapter(this)
-        TabLayoutMediator(dealsBinding.tabs, dealsBinding.viewPager,
+        donationsBinding = ActivityDonationsBinding.inflate(layoutInflater)
+        setContentView(donationsBinding.root)
+        setSupportActionBar(donationsBinding.toolbarDonations)
+        donationsBinding.viewPager.adapter = DonationsScreenSlidePagerAdapter(this)
+        TabLayoutMediator(donationsBinding.tabs, donationsBinding.viewPager,
             TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                 when (position) {
                     0 -> {
-                        tab.text = "Sell"
+                        tab.text = "Donations"
                     }
                     1 -> {
-                        tab.text = "Buy"
-                    }
-                    2 -> {
-                        tab.text = "Donate"
+                        tab.text = "Interest"
                     }
                 }
             }).attach()

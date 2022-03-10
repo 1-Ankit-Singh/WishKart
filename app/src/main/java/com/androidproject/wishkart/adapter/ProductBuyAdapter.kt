@@ -8,14 +8,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.wishkart.R
 import com.androidproject.wishkart.databinding.ListProductItemBinding
+import com.androidproject.wishkart.deals.ProductSellerActivity
 import com.androidproject.wishkart.model.ProductBuy
 import com.androidproject.wishkart.ui.buy.ProductDetailActivity
 import com.squareup.picasso.Picasso
 
 class ProductBuyAdapter(
     private val productsArrayList: ArrayList<ProductBuy>,
-    val context: Context
+    val context: Context,
+    private val clazz: String
 ) : RecyclerView.Adapter<ProductBuyAdapter.ViewHolder>() {
+
+    private lateinit var intent: Intent
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var productBuyAdapter = ListProductItemBinding.bind(itemView)
@@ -48,7 +52,11 @@ class ProductBuyAdapter(
             .load(productsArrayList[position].productUrl1)
             .into(holder.productBuyAdapter.product)
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ProductDetailActivity::class.java)
+            if (clazz == "ProductDetailActivity" ) {
+                intent = Intent(context, ProductDetailActivity::class.java)
+            } else if (clazz == "ProductSellerActivity") {
+                intent = Intent(context, ProductSellerActivity::class.java)
+            }
             intent.putExtra("productName", productsArrayList[position].productName)
             intent.putExtra("productCategory", productsArrayList[position].productCategory)
             intent.putExtra("productMinPrice", productsArrayList[position].productMinPrice)

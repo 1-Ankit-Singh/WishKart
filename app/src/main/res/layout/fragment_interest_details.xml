@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".deals.ProductSellerFragment">
+    tools:context=".donations.DonationsDetailsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/buyDealRv"
+        android:id="@+id/InterestRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progressBarSeller"
+        android:id="@+id/progressBarInterest"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

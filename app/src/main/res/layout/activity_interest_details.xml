@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.donate.DonatedProductDetailActivity">
+    tools:context=".donations.InterestDetailsActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarDonatedProductDetails"
+        android:id="@+id/toolbarInterestDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarDonatedProductDetails">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarInterestDetails">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                 android:textSize="20sp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/removeDonatedProduct"
+                android:id="@+id/notInterested"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -150,7 +150,7 @@
                 android:layout_marginBottom="90dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="@string/remove_product"
+                android:text="@string/not_interested"
                 android:textAllCaps="true"
                 android:textColor="#fff"
                 android:textSize="20sp"

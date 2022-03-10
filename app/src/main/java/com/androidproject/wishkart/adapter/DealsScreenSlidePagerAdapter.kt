@@ -7,7 +7,7 @@ import com.androidproject.wishkart.deals.ProductBuyerFragment
 import com.androidproject.wishkart.deals.ProductGetterFragment
 import com.androidproject.wishkart.deals.ProductSellerFragment
 
-class ScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+class DealsScreenSlidePagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     private val numPages: Int = 3
 
     override fun getItemCount(): Int = numPages

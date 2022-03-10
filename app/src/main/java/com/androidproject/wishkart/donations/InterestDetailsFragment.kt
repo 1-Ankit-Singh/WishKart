@@ -1,4 +1,4 @@
-package com.androidproject.wishkart.deals
+package com.androidproject.wishkart.donations
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,49 +7,48 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.androidproject.wishkart.adapter.ProductBuyAdapter
-import com.androidproject.wishkart.databinding.FragmentProductSellerBinding
-import com.androidproject.wishkart.model.ProductBuy
+import com.androidproject.wishkart.adapter.ProductDonateAdapter
+import com.androidproject.wishkart.databinding.FragmentInterestDetailsBinding
+import com.androidproject.wishkart.model.ProductDonate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
-class ProductSellerFragment : Fragment() {
+class InterestDetailsFragment : Fragment() {
     // Initializing Variables
-    private lateinit var productSellerFragment: FragmentProductSellerBinding
-    private var productSellerArrayList = arrayListOf<ProductBuy>()
-    private val database = FirebaseFirestore.getInstance()
+    private lateinit var interestDetailsFragment: FragmentInterestDetailsBinding
+    private var productDonateArrayList = arrayListOf<ProductDonate>()
     private val auth = FirebaseAuth.getInstance()
+    private val database = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        productSellerFragment = FragmentProductSellerBinding.inflate(inflater)
+        interestDetailsFragment = FragmentInterestDetailsBinding.inflate(inflater)
         fetchData()
-        return productSellerFragment.root
+        return interestDetailsFragment.root
     }
+
     private fun fetchData() {
-        database.collection("users/${auth.uid.toString()}/buy")
+        database.collection("users/${auth.uid.toString()}/donationInterest")
             .get()
             .addOnSuccessListener {
                 val list: List<DocumentSnapshot> = it.documents
-                if(list.isEmpty()) {
-                    productSellerFragment.buyDealRv.visibility = View.GONE
-                    productSellerFragment.nothingToShowHereImage.visibility = View.VISIBLE
-                    productSellerFragment.nothingToShowHereText.visibility = View.VISIBLE
+                if (list.isEmpty()) {
+                    interestDetailsFragment.InterestRv.visibility = View.GONE
+                    interestDetailsFragment.nothingToShowHereImage.visibility = View.VISIBLE
+                    interestDetailsFragment.nothingToShowHereText.visibility = View.VISIBLE
                 }
                 for (product in list) {
-                    val productBuy = ProductBuy(
+                    val productDonate = ProductDonate(
                         product.getString("uid").toString(),
                         product.getString("productOwnerCity").toString(),
                         product.getString("productOwnerPinCode").toString(),
                         product.getString("productOwnerCountry").toString(),
                         product.getString("productName").toString(),
                         product.getString("productCategory").toString(),
-                        product.getString("productMinPrice").toString(),
-                        product.getString("productMaxPrice").toString(),
                         product.getString("productDescription").toString(),
                         product.getString("productUrl1").toString(),
                         product.getString("productUrl2").toString(),
@@ -57,11 +56,11 @@ class ProductSellerFragment : Fragment() {
                         product.getString("productUrl4").toString(),
                         product.getString("productStatus").toString(),
                     )
-                    productSellerArrayList.add(productBuy)
+                    productDonateArrayList.add(productDonate)
                 }
-                productSellerFragment.buyDealRv.layoutManager = LinearLayoutManager(context)
-                productSellerFragment.buyDealRv.adapter = ProductBuyAdapter(productSellerArrayList, requireContext(), "ProductSellerActivity")
-                productSellerFragment.progressBarSeller.visibility = View.GONE
+                interestDetailsFragment.InterestRv.layoutManager = LinearLayoutManager(context)
+                interestDetailsFragment.InterestRv.adapter = ProductDonateAdapter(productDonateArrayList, requireContext(), "InterestDetailsActivity")
+                interestDetailsFragment.progressBarInterest.visibility = View.GONE
             }
             .addOnFailureListener {
                 Toast.makeText(
