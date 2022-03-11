@@ -38,6 +38,20 @@ class ProductDonateAdapter(
         holder.productDonateAdapter.productPrice.visibility = View.GONE
         holder.productDonateAdapter.productName.text = productsArrayList[position].productName
         holder.productDonateAdapter.productCategory.text = productsArrayList[position].productCategory
+        when (productsArrayList[position].productStatus) {
+            "Available" -> {
+                holder.productDonateAdapter.productAvailability.text =
+                    context.getString(R.string.availability, "Available")
+            }
+            "Dealing" -> {
+                holder.productDonateAdapter.productAvailability.text =
+                    context.getString(R.string.availability, "Available")
+            }
+            else -> {
+                holder.productDonateAdapter.productAvailability.text =
+                    context.getString(R.string.availability, "Donated")
+            }
+        }
         holder.productDonateAdapter.location.text =
             context.getString(
                 R.string.location,

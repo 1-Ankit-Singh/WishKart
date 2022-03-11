@@ -10,6 +10,7 @@ import com.androidproject.wishkart.R
 import com.androidproject.wishkart.databinding.ListProductNotificationBinding
 import com.androidproject.wishkart.deals.ProductBuyerActivity
 import com.androidproject.wishkart.model.ProductBuyer
+import java.util.*
 
 class ProductBuyerAdapter(
     private val productBuyerArrayList: ArrayList<ProductBuyer>,
@@ -32,6 +33,9 @@ class ProductBuyerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val colors = context.resources.getIntArray(R.array.random_color)
+        val randomColor = colors[Random().nextInt(colors.size)]
+        holder.productBuyerAdapter.viewColorTag.setBackgroundColor(randomColor)
         holder.productBuyerAdapter.productNotification.text = context.getString(
             R.string.someone_showed_interest,
             productBuyerArrayList[position].productBuyerName,
@@ -43,8 +47,8 @@ class ProductBuyerAdapter(
             }
             intent.putExtra("productName", productBuyerArrayList[position].productName)
             intent.putExtra("productCategory", productBuyerArrayList[position].productCategory)
-            intent.putExtra("productBuyerCertificateUrl", productBuyerArrayList[position].productMinPrice)
-            intent.putExtra("productBuyerCertificateNumber", productBuyerArrayList[position].productMaxPrice)
+            intent.putExtra("productMinPrice", productBuyerArrayList[position].productMinPrice)
+            intent.putExtra("productMaxPrice", productBuyerArrayList[position].productMaxPrice)
             intent.putExtra("productDescription", productBuyerArrayList[position].productDescription)
             intent.putExtra("productUrl1", productBuyerArrayList[position].productUrl1)
             intent.putExtra("productUrl2", productBuyerArrayList[position].productUrl2)

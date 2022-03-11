@@ -180,13 +180,7 @@ class DonationsDetailsActivity : AppCompatActivity() {
         database.collection("users/$uid/productGetter")
             .document("$productCategory$productName").set(productGetter)
             .addOnSuccessListener {
-                Toast.makeText(
-                    this,
-                    "Product Added to Buy List",
-                    Toast.LENGTH_SHORT
-                ).show()
-                startActivity(Intent(this, DonationsActivity::class.java))
-                finish()
+                upDateProductStatusInOwnerProductsList()
             }.addOnFailureListener {
                 Toast.makeText(
                     this,
@@ -196,7 +190,57 @@ class DonationsDetailsActivity : AppCompatActivity() {
             }
     }
 
+    private fun upDateProductStatusInOwnerProductsList() {
+        database.collection("users/$uid/donate")
+            .document("$productCategory$productName").update(
+            "productStatus", productStatus
+        ).addOnSuccessListener {
+            upDateProductStatusInProductList()
+        }.addOnFailureListener {
+            Toast.makeText(
+                this,
+                "Something went wrong, Please try again !!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun upDateProductStatusInProductList() {
+        database.collection("donate")
+            .document(uid).update(
+            "productStatus", productStatus
+        ).addOnSuccessListener {
+            Toast.makeText(
+                this,
+                "Product Added to Interest List",
+                Toast.LENGTH_SHORT
+            ).show()
+            startActivity(Intent(this, DonationsActivity::class.java))
+            finish()
+        }.addOnFailureListener {
+            Toast.makeText(
+                this,
+                "Something went wrong, Please try again !!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
     private fun setData() {
+        when (productStatus) {
+            "Available" -> {
+                donationsDetailsBinding.availability.text =
+                    getString(R.string.availability, "Available")
+            }
+            "Dealing" -> {
+                donationsDetailsBinding.availability.text =
+                    getString(R.string.availability, "Available")
+            }
+            else -> {
+                donationsDetailsBinding.availability.text =
+                    getString(R.string.availability, "Donated")
+            }
+        }
         donationsDetailsBinding.productName.text = productName
         donationsDetailsBinding.productCategory.text = productCategory
         donationsDetailsBinding.productDescription.text = productDescription
@@ -212,7 +256,7 @@ class DonationsDetailsActivity : AppCompatActivity() {
         productUrl2 = intent.getStringExtra("productUrl2").toString()
         productUrl3 = intent.getStringExtra("productUrl3").toString()
         productUrl4 = intent.getStringExtra("productUrl4").toString()
-        productStatus = intent.getStringExtra("productStatus").toString()
+        productStatus = "Dealing"
         productOwnerCity = intent.getStringExtra("productOwnerCity").toString()
         productOwnerPinCode = intent.getStringExtra("productOwnerPinCode").toString()
         productOwnerCountry = intent.getStringExtra("productOwnerCountry").toString()

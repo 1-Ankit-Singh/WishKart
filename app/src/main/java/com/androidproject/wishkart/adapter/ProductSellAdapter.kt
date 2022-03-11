@@ -41,6 +41,20 @@ class ProductSellAdapter(
                 productsArrayList[position].productMinPrice,
                 productsArrayList[position].productMaxPrice
             )
+        when (productsArrayList[position].productStatus) {
+            "Available" -> {
+                holder.productSellAdapter.productAvailability.text =
+                    context.getString(R.string.availability, "Available")
+            }
+            "Dealing" -> {
+                holder.productSellAdapter.productAvailability.text =
+                    context.getString(R.string.availability, "Available")
+            }
+            else -> {
+                holder.productSellAdapter.productAvailability.text =
+                    context.getString(R.string.availability, "Sold")
+            }
+        }
         holder.productSellAdapter.location.text =
             context.getString(
                 R.string.location,

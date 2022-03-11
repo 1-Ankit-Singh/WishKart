@@ -133,6 +133,20 @@ class DonatedProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setData() {
+        when (productStatus) {
+            "Available" -> {
+                donatedProductDetailActivity.availability.text =
+                    getString(R.string.availability, "Available")
+            }
+            "Dealing" -> {
+                donatedProductDetailActivity.availability.text =
+                    getString(R.string.availability, "Available")
+            }
+            else -> {
+                donatedProductDetailActivity.availability.text =
+                    getString(R.string.availability, "Donated")
+            }
+        }
         donatedProductDetailActivity.productName.text = productName
         donatedProductDetailActivity.productCategory.text = productCategory
         donatedProductDetailActivity.productDescription.text = productDescription

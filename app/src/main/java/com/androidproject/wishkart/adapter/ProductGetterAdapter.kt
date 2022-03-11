@@ -10,6 +10,7 @@ import com.androidproject.wishkart.R
 import com.androidproject.wishkart.databinding.ListProductNotificationBinding
 import com.androidproject.wishkart.deals.ProductGetterActivity
 import com.androidproject.wishkart.model.ProductGetter
+import java.util.*
 
 class ProductGetterAdapter(
     private val productGetterArrayList: ArrayList<ProductGetter>,
@@ -32,6 +33,9 @@ class ProductGetterAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val colors = context.resources.getIntArray(R.array.random_color)
+        val randomColor = colors[Random().nextInt(colors.size)]
+        holder.productGetterAdapter.viewColorTag.setBackgroundColor(randomColor)
         holder.productGetterAdapter.productNotification.text = context.getString(
             R.string.someone_showed_interest,
             productGetterArrayList[position].productGetterName,

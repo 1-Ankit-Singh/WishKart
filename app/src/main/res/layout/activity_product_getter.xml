@@ -50,6 +50,21 @@
                 android:orientation="horizontal" />
 
             <TextView
+                android:id="@+id/availability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:padding="8dp"
+                android:background="@drawable/background_availability"
+                android:textStyle="bold"
+                android:elevation="8dp"
+                tools:text="Availability"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -141,21 +156,153 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/notInterested"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/ngo_name"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/ngoName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/background_edit_text"
+                android:elevation="8dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/ngo_phone_number"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/ngoPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/background_edit_text"
+                android:elevation="8dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/ngo_address"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/ngoAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/background_edit_text"
+                android:elevation="8dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/ngo_certificate"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/ngoCertificateImage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/background_above_doc"
+                android:contentDescription="@drawable/user_ngo_certificate"
+                android:elevation="8dp"
+                android:padding="2dp"
+                app:srcCompat="@drawable/user_ngo_certificate" />
+
+            <TextView
+                android:id="@+id/ngoCertificateNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/background_below_doc"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/bluish_black"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="90dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="@string/not_interested"
-                android:textAllCaps="true"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:textStyle="normal"
-                app:cornerRadius="44dp" />
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/donated"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:layout_marginEnd="2dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/mark_as_donated"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="20sp"
+                    android:textStyle="normal"
+                    app:cornerRadius="44dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/notInterested"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="2dp"
+                    android:layout_gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/not_interested"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="20sp"
+                    android:textStyle="normal"
+                    app:cornerRadius="44dp" />
+            </LinearLayout>
 
         </LinearLayout>
 

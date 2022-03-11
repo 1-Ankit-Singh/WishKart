@@ -72,4 +72,18 @@
     <string name="interest">Interest</string>
     <string name="not_interested">Not Interested</string>
     <string name="someone_showed_interest">%s is interested in your %s</string>
+    <string name="product_owner_name">Product Owner Name</string>
+    <string name="product_owner_phone_number">Product Owner Phone Number</string>
+    <string name="product_owner_address">Product Owner Address</string>
+    <string name="product_buyer_name">Product Buyer Name</string>
+    <string name="product_buyer_phone_number">Product Buyer Phone Number</string>
+    <string name="product_buyer_address">Product Buyer Address</string>
+    <string name="ngo_name">NGO Name</string>
+    <string name="ngo_phone_number">NGO Phone Number</string>
+    <string name="ngo_address">NGO Address</string>
+    <string name="ngo_certificate">NGO Certificate</string>
+    <string name="address" >%s, %s - %s, %s</string>
+    <string name="mark_as_sold">Sold</string>
+    <string name="mark_as_donated">Donated</string>
+    <string name="availability">Availability: %s</string>
 </resources>

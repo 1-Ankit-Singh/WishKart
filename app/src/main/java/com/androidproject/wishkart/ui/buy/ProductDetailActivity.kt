@@ -182,9 +182,39 @@ class ProductDetailActivity : AppCompatActivity() {
         database.collection("users/$uid/productBuyer")
             .document("$productCategory$productName").set(productBuyer)
             .addOnSuccessListener {
+                upDateProductStatusInOwnerProductsList()
+            }.addOnFailureListener {
                 Toast.makeText(
                     this,
-                    "Product Added to Buy List",
+                    "Something went wrong, Please try again !!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun upDateProductStatusInOwnerProductsList() {
+        database.collection("users/$uid/products")
+            .document("$productCategory$productName").update(
+                "productStatus", productStatus
+            ).addOnSuccessListener {
+                upDateProductStatusInProductList()
+            }.addOnFailureListener {
+                Toast.makeText(
+                    this,
+                    "Something went wrong, Please try again !!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun upDateProductStatusInProductList() {
+        database.collection("product")
+            .document(uid).update(
+                "productStatus", productStatus
+            ).addOnSuccessListener {
+                Toast.makeText(
+                    this,
+                    "Product Added to Interest List",
                     Toast.LENGTH_SHORT
                 ).show()
                 startActivity(Intent(this, MainActivity::class.java))
@@ -199,6 +229,20 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setData() {
+        when (productStatus) {
+            "Available" -> {
+                productDetailActivity.availability.text =
+                    getString(R.string.availability, "Available")
+            }
+            "Dealing" -> {
+                productDetailActivity.availability.text =
+                    getString(R.string.availability, "Available")
+            }
+            else -> {
+                productDetailActivity.availability.text =
+                    getString(R.string.availability, "Donated")
+            }
+        }
         productDetailActivity.productName.text = productName
         productDetailActivity.productCategory.text = productCategory
         productDetailActivity.productPrice.text =
@@ -218,7 +262,7 @@ class ProductDetailActivity : AppCompatActivity() {
         productUrl2 = intent.getStringExtra("productUrl2").toString()
         productUrl3 = intent.getStringExtra("productUrl3").toString()
         productUrl4 = intent.getStringExtra("productUrl4").toString()
-        productStatus = intent.getStringExtra("productStatus").toString()
+        productStatus = "Dealing"
         productOwnerCity = intent.getStringExtra("productOwnerCity").toString()
         productOwnerPinCode = intent.getStringExtra("productOwnerPinCode").toString()
         productOwnerCountry = intent.getStringExtra("productOwnerCountry").toString()
