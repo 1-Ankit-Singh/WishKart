@@ -258,7 +258,7 @@ class ProductBuyerActivity : AppCompatActivity() {
         productBuyerCountry = intent.getStringExtra("productBuyerCountry").toString()
         val productImages = ProductImages(productUrl1, productUrl2, productUrl3, productUrl4)
         productImagesArrayList.add(productImages)
-        if ((productStatus != "Available") or (productStatus != "Dealing")) {
+        if ((productStatus != "Available") and (productStatus != "Dealing")) {
             productBuyerBinding.notInterested.visibility = View.GONE
         }
     }

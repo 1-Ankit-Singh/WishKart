@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.androidproject.wishkart.databinding.ListProductImagesBinding
 import com.androidproject.wishkart.model.ProductImages
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 
 class ProductViewPagerAdapter(
     productImages: ArrayList<ProductImages>,
@@ -23,7 +23,7 @@ class ProductViewPagerAdapter(
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val slider = ListProductImagesBinding.inflate(LayoutInflater.from(container.context))
-        Picasso.get().load(productImageSlider[position]).into(slider.productImages)
+        Glide.with(container).load(productImageSlider[position]).into(slider.productImages)
         container.addView(slider.root)
         return slider.root
     }

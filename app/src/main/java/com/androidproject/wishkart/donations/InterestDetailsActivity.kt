@@ -118,12 +118,16 @@ class InterestDetailsActivity : AppCompatActivity() {
         database.collection("users/$uid/productGetter")
             .document("$productCategory$productName").get().addOnSuccessListener {
                 if (!(it.exists())) {
-                    showAlertDialogBox("Oops", "It looks Donor is not interested to Donate their product to you. " +
+                    showAlertDialogBox("Oops!!!", "It looks Donor is not interested to Donate their product to you. " +
                             "Do you want to keep this product in your list or want to remove it?")
                 }
                 if (it.exists()) {
+                    if ((productStatus != auth.uid ) and (productStatus != "Available") and (productStatus != "Dealing")) {
+                        showAlertDialogBox("Oops!!!", "It looks the product is already donated to someone."+
+                                "Do you want to keep this product in your list or want to remove the it?")
+                    }
                     if (productStatus == auth.uid) {
-                        showAlertDialogBox("Congratulations", "Donor donated the product to you. "+
+                        showAlertDialogBox("Congratulations!!!", "Donor donated the product to you. "+
                                 "Do you want to keep this product in your list or want to remove the record?")
                     }
                 }

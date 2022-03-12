@@ -83,7 +83,7 @@
     <string name="ngo_address">NGO Address</string>
     <string name="ngo_certificate">NGO Certificate</string>
     <string name="address" >%s, %s - %s, %s</string>
-    <string name="mark_as_sold">Sold</string>
-    <string name="mark_as_donated">Donated</string>
+    <string name="mark_as_sold">Sell</string>
+    <string name="mark_as_donated">Donate</string>
     <string name="availability">Availability: %s</string>
 </resources>
