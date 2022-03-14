@@ -55,7 +55,7 @@ class ProductBuyerActivity : AppCompatActivity() {
         setDataInVariables()
         getData()
 
-        val productViewPagerAdapter = ProductViewPagerAdapter(productImagesArrayList, this)
+        val productViewPagerAdapter = ProductViewPagerAdapter(productImagesArrayList, this, true)
         productBuyerBinding.productViewPager.adapter = productViewPagerAdapter
 
         dotsCount = productViewPagerAdapter.count

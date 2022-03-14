@@ -11,7 +11,8 @@ import com.bumptech.glide.Glide
 
 class ProductViewPagerAdapter(
     productImages: ArrayList<ProductImages>,
-    val context: Context
+    val context: Context,
+    val clickable: Boolean
 ) : PagerAdapter() {
 
     private val productImageSlider = arrayOf(

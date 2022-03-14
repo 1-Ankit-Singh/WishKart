@@ -28,17 +28,17 @@ class DonateActivity : AppCompatActivity() {
     private lateinit var donateBinding: ActivityDonateBinding
     private var categoryOptions = arrayListOf<Any>(
         "Select Category",
-        "Apparel",
+        "Apparel or Clothes",
         "Fashion",
-        "Clothes",
-        "Electronic Products",
+        "Electronic Products or Gadgets",
         "Business Supply",
         "Mobile Phones",
         "Bags",
         "Cosmetics",
-        "Food Item",
+        "Spices and Edible Items",
         "Art & Craft",
-        "Jewelry",
+        "Education",
+        "Jewellery",
         "Books",
         "Shoes",
         "Furniture",
@@ -48,15 +48,13 @@ class DonateActivity : AppCompatActivity() {
         "Homemade Perfumes",
         "Greeting Cards",
         "Lights and Bulbs",
-        "Spices and Edible Items",
         "Handmade Toys",
         "Toys",
-        "Pet Care Products",
-        "Fitness Products",
         "Watches",
-        "Desktops/Laptop",
-        "Paper and Forest",
-        "Baby products"
+        "Fitness Products",
+        "Desktop or Laptop",
+        "Paper Products",
+        "Toddler Items"
     )
     private val auth = FirebaseAuth.getInstance()
     private val storage = FirebaseStorage.getInstance()

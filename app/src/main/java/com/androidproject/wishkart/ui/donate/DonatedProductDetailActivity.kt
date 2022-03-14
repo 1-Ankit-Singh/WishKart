@@ -45,7 +45,7 @@ class DonatedProductDetailActivity : AppCompatActivity() {
 
         setDataInVariables()
         setData()
-        val productViewPagerAdapter = ProductViewPagerAdapter(productImagesArrayList, this)
+        val productViewPagerAdapter = ProductViewPagerAdapter(productImagesArrayList, this, true)
         donatedProductDetailActivity.productViewPager.adapter = productViewPagerAdapter
 
         dotsCount = productViewPagerAdapter.count

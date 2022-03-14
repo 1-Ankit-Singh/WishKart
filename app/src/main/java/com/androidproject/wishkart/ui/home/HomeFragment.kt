@@ -2,6 +2,7 @@ package com.androidproject.wishkart.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 
 class HomeFragment : Fragment() {
     // Initializing Variables
@@ -35,22 +37,28 @@ class HomeFragment : Fragment() {
     private lateinit var userType: String
     private var dotsCount: Int = 0
     private var dots: Array<ImageView?>? = null
+    private var currentPage = 0
+    private lateinit var handler: Handler
+    private lateinit var update: Runnable
+    private var timer: Timer? = null
+    private val delayMs: Long = 500
+    private val periodMs: Long = 3000
     private var categoryArrayList = arrayListOf<Category>()
     private var productBuyArrayList = arrayListOf<ProductBuy>()
     private var productImagesArrayList = ArrayList<ProductImages>()
     private var productCategoryTextArrayList = arrayOf(
         "All",
-        "Apparel",
+        "Apparel or Clothes",
         "Fashion",
-        "Clothes",
-        "Electronic Products",
+        "Electronic Products or Gadgets",
         "Business Supply",
         "Mobile Phones",
         "Bags",
         "Cosmetics",
-        "Food Item",
+        "Spices and Edible Items",
         "Art & Craft",
-        "Jewelry",
+        "Education",
+        "Jewellery",
         "Books",
         "Shoes",
         "Furniture",
@@ -60,47 +68,43 @@ class HomeFragment : Fragment() {
         "Homemade Perfumes",
         "Greeting Cards",
         "Lights and Bulbs",
-        "Spices and Edible Items",
         "Handmade Toys",
         "Toys",
-        "Pet Care Products",
-        "Fitness Products",
         "Watches",
-        "Desktops/Laptop",
-        "Paper and Forest",
-        "Baby products"
+        "Fitness Products",
+        "Desktop or Laptop",
+        "Paper Products",
+        "Toddler Items"
     )
     private var productCategoryImageArrayList = arrayOf(
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-        "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg"
+        R.drawable.category_1,
+        R.drawable.category_2,
+        R.drawable.category_3,
+        R.drawable.category_4,
+        R.drawable.category_5,
+        R.drawable.category_6,
+        R.drawable.category_7,
+        R.drawable.category_8,
+        R.drawable.category_9,
+        R.drawable.category_10,
+        R.drawable.category_11,
+        R.drawable.category_12,
+        R.drawable.category_13,
+        R.drawable.category_14,
+        R.drawable.category_15,
+        R.drawable.category_16,
+        R.drawable.category_17,
+        R.drawable.category_18,
+        R.drawable.category_19,
+        R.drawable.category_20,
+        R.drawable.category_21,
+        R.drawable.category_22,
+        R.drawable.category_23,
+        R.drawable.category_24,
+        R.drawable.category_25,
+        R.drawable.category_26,
+        R.drawable.category_27,
+        R.drawable.category_28
     )
 
     override fun onCreateView(
@@ -121,7 +125,7 @@ class HomeFragment : Fragment() {
             categoryArrayList.add(
                 Category(
                     productCategoryTextArrayList[i],
-                    "https://noobpreneur.com/wp-content/uploads/2016/07/selling-guitar.jpg"
+                    productCategoryImageArrayList[i]
                 )
             )
         }
@@ -183,14 +187,14 @@ class HomeFragment : Fragment() {
 
     private fun setImageSlider() {
         val productImages = ProductImages(
-            "https://noobpreneur.com/wp-content/uploads/2016/07/selling-guitar.jpg",
-            "https://assets.entrepreneur.com/content/3x2/2000/20151211134026-garage-sale-second-hand-souvenirs-flea-market-selling.jpeg",
-            "https://assets.entrepreneur.com/content/3x2/2000/1596216896-GettyImages-608166811.jpg",
-            "https://thumbs.dreamstime.com/b/front-view-happy-girl-looking-camera-keeping-hand-mother-running-forward-big-toy-store-sming-woman-following-161261804.jpg"
+            "https://wishkart.page.link/home1",
+            "https://wishkart.page.link/home2",
+            "https://wishkart.page.link/home3",
+            "https://wishkart.page.link/home4"
         )
         productImagesArrayList.add(productImages)
         val productViewPagerAdapter =
-            ProductViewPagerAdapter(productImagesArrayList, requireContext())
+            ProductViewPagerAdapter(productImagesArrayList, requireContext(), false)
         homeBinding.productViewPager.adapter = productViewPagerAdapter
         dotsCount = productViewPagerAdapter.count
         dots = arrayOfNulls(dotsCount)
@@ -225,24 +229,48 @@ class HomeFragment : Fragment() {
             }
 
             override fun onPageSelected(position: Int) {
-                for (i in 0 until dotsCount) {
-                    dots!![i]!!.setImageDrawable(
+                if (isAdded) {
+                    for (i in 0 until dotsCount) {
+                        dots!![i]!!.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                requireActivity().applicationContext,
+                                R.drawable.dots_default
+                            )
+                        )
+                    }
+                    dots!![position]!!.setImageDrawable(
                         ContextCompat.getDrawable(
                             requireActivity().applicationContext,
-                            R.drawable.dots_default
+                            R.drawable.dots_active
                         )
                     )
                 }
-                dots!![position]!!.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        requireActivity().applicationContext,
-                        R.drawable.dots_active
-                    )
-                )
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
+
+        // After setting the adapter use the timer
+        handler = Handler()
+        update = Runnable {
+            if (currentPage == 4) {
+                currentPage = 0
+            }
+            homeBinding.productViewPager.setCurrentItem(currentPage++, true)
+        }
+
+        timer = Timer() // This will create a new Thread
+        timer!!.schedule(object : TimerTask() {
+            // task to be scheduled
+            override fun run() {
+                handler.post(update)
+            }
+        }, delayMs, periodMs)
+    }
+
+    override fun onDestroy() {
+        handler.removeCallbacks(update)
+        super.onDestroy()
     }
 
     private fun checkUserType() {

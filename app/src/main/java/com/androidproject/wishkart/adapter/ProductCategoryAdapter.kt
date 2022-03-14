@@ -27,7 +27,7 @@ class ProductCategoryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.categoryAdapter.categoryTitle.text = categoryAdapterArrayList[position].category
         Picasso.get()
-            .load(categoryAdapterArrayList[position].categoryImageUrl)
+            .load(categoryAdapterArrayList[position].categoryImageID)
             .into(holder.categoryAdapter.categoryImage)
         holder.itemView.setOnClickListener {
             categoryClickInterface.onCategoryClick(position)
