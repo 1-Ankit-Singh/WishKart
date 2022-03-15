@@ -82,8 +82,10 @@
     <string name="ngo_phone_number">NGO Phone Number</string>
     <string name="ngo_address">NGO Address</string>
     <string name="ngo_certificate">NGO Certificate</string>
-    <string name="address" >%s, %s - %s, %s</string>
+    <string name="address">%s, %s - %s, %s</string>
     <string name="mark_as_sold">Sell</string>
     <string name="mark_as_donated">Donate</string>
     <string name="availability">Availability: %s</string>
+    <string name="enter_city_name">Enter city name</string>
+    <string name="enter_product_name">Enter product name</string>
 </resources>

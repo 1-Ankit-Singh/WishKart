@@ -127,7 +127,7 @@ class OtpActivity : AppCompatActivity() {
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
                     Log.e("Exception:", "FirebaseAuthInvalidCredentialsException", e)
-                    Log.e("=========:", "FirebaseAuthInvalidCredentialsException " + e.message)
+                    Log.e("=========:", "FirebaseAuthInvalidCredentialsException" + e.message)
 
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded

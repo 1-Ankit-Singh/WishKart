@@ -5,5 +5,4 @@ class ProductImages(
     val productUrl2: String,
     val productUrl3: String,
     val productUrl4: String
-) {
-}
+)

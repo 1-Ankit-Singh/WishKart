@@ -36,7 +36,12 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_sell, R.id.nav_buy, R.id.nav_donate, R.id.nav_profile, R.id.nav_help
+                R.id.nav_home,
+                R.id.nav_sell,
+                R.id.nav_buy,
+                R.id.nav_donate,
+                R.id.nav_profile,
+                R.id.nav_help
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -68,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun yourDeals() {
-        startActivity(Intent(this, DealsActivity :: class.java))
+        startActivity(Intent(this, DealsActivity::class.java))
         finish()
     }
 

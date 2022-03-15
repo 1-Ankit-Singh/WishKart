@@ -13,5 +13,4 @@ class ProductDonate(
     val productUrl3: String,
     val productUrl4: String,
     val productStatus: String
-) {
-}
+)

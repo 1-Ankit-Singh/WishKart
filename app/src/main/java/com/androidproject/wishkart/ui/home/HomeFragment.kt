@@ -148,8 +148,7 @@ class HomeFragment : Fragment() {
                 val list: List<DocumentSnapshot> = it.documents
                 for (product in list) {
                     if (auth.uid!! != product.getString("uid").toString()) {
-                        if ((category == "All") or (category == product.getString("productCategory")
-                                .toString())
+                        if ((category == "All") or (category == product.getString("productCategory").toString())
                         ) {
                             val productBuy = ProductBuy(
                                 product.getString("uid").toString(),

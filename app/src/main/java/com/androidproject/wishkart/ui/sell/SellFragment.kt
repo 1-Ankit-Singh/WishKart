@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
-class SellFragment : Fragment(){
+class SellFragment : Fragment() {
     // Initializing Variables
     private lateinit var sellBinding: FragmentSellBinding
     private var productSellArrayList = arrayListOf<ProductSell>()
@@ -41,7 +41,7 @@ class SellFragment : Fragment(){
             .get()
             .addOnSuccessListener {
                 val list: List<DocumentSnapshot> = it.documents
-                if(list.isEmpty()) {
+                if (list.isEmpty()) {
                     sellBinding.sellRv.visibility = View.GONE
                     sellBinding.nothingToShowHereImage.visibility = View.VISIBLE
                     sellBinding.nothingToShowHereText.visibility = View.VISIBLE

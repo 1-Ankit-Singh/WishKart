@@ -82,9 +82,9 @@ class SellActivity : AppCompatActivity() {
         setSupportActionBar(sellBinding.toolbarSell)
 
         getProductOwnerDetails()
-        val bloodGroupAdapter =
+        val categoryAdapter =
             ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, categoryOptions)
-        sellBinding.category.adapter = bloodGroupAdapter
+        sellBinding.category.adapter = categoryAdapter
         sellBinding.category.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(

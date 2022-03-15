@@ -9,4 +9,4 @@ class IndividualUser(
     val userCity: String,
     val userPinCode: String,
     val userCountry: String
-) {}
+)

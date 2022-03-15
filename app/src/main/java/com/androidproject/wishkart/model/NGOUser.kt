@@ -11,4 +11,4 @@ class NGOUser(
     val userCountry: String,
     val userCertificateUrl: String,
     val userCertificateNumber: String
-) {}
+)

@@ -7,8 +7,10 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/app_color.xml" value="0.243" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background_above_doc.xml" value="0.2675" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background_app_color.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background_availability.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background_below_doc.xml" value="0.2675" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background_category_text.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background_edit_text.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background_product.xml" value="0.1705" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/background_splash.xml" value="0.2675" />
@@ -29,6 +31,7 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/ic_location.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/ic_logout.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/ic_person.xml" value="0.2675" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/ic_search.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/ic_sell_buy.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/product_background.xml" value="0.2675" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/WishKart/app/src/main/res/drawable/side_nav_bar.xml" value="0.2675" />

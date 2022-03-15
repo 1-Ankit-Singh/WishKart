@@ -81,9 +81,9 @@ class DonateActivity : AppCompatActivity() {
         setSupportActionBar(donateBinding.toolbarDonate)
 
         getProductOwnerDetails()
-        val bloodGroupAdapter =
+        val categoryAdapter =
             ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, categoryOptions)
-        donateBinding.category.adapter = bloodGroupAdapter
+        donateBinding.category.adapter = categoryAdapter
         donateBinding.category.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
