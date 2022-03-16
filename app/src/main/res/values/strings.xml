@@ -88,4 +88,19 @@
     <string name="availability">Availability: %s</string>
     <string name="enter_city_name">Enter city name</string>
     <string name="enter_product_name">Enter product name</string>
+    <string name="tap_here_to_show_search_panel">Tap here to show search panel</string>
+    <string name="search_tap">Tap here to %s search panel</string>
+    <string name="help_and_instructions">Help and instructions</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="login_and_profile">%s</string>
+    <string name="sell_product">%s</string>
+    <string name="buy_product">%s</string>
+    <string name="donate_product">%s</string>
+    <string name="donee">%s</string>
+    <string name="login_and_profile_text">Login and profile</string>
+    <string name="sell_product_text">Sell product</string>
+    <string name="buy_product_text">Buy product</string>
+    <string name="donate_product_text">Donate product</string>
+    <string name="donee_text">Donee</string>
+    <string name="note">Note</string>
 </resources>

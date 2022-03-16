@@ -6,35 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".ui.buy.BuyFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/searchTap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/blue_200"
-        android:clickable="true"
-        android:contentDescription="@drawable/ic_search"
-        android:focusable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_search" />
-
     <LinearLayout
         android:id="@+id/buyLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:orientation="vertical"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/searchTap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="4dp"
+            android:text="@string/tap_here_to_show_search_panel"
+            android:textColor="@color/bluish_black"
+            android:textSize="14sp"
+            app:drawableEndCompat="@drawable/ic_info" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="#bebebe" />
+
+        <LinearLayout
+            android:id="@+id/buyLinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <Spinner
                 android:id="@+id/searchWith"
@@ -54,8 +58,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/buyLinearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <EditText
                 android:id="@+id/searchEditText"

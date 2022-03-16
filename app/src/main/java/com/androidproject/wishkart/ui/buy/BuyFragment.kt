@@ -10,13 +10,13 @@ import android.widget.SpinnerAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.androidproject.wishkart.R
 import com.androidproject.wishkart.adapter.ProductBuyAdapter
 import com.androidproject.wishkart.databinding.FragmentBuyBinding
 import com.androidproject.wishkart.model.ProductBuy
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.hbb20.R
 
 class BuyFragment : Fragment() {
     // Initializing Variables
@@ -71,14 +71,20 @@ class BuyFragment : Fragment() {
 
         buyBinding.searchTap.setOnClickListener {
             if (!searchable){
-                buyBinding.buyLinearLayout.visibility = View.VISIBLE
+                buyBinding.buyLinearLayout1.visibility = View.VISIBLE
+                buyBinding.buyLinearLayout2.visibility = View.VISIBLE
                 searchable = true
-                buyBinding.searchTap.visibility = View.GONE
+                buyBinding.searchTap.text = requireContext().getString(R.string.search_tap, "hide")
+            } else {
+                buyBinding.buyLinearLayout1.visibility = View.GONE
+                buyBinding.buyLinearLayout2.visibility = View.GONE
+                searchable = false
+                buyBinding.searchTap.text = requireContext().getString(R.string.search_tap, "show")
             }
         }
 
         val categoryAdapter =
-            context?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, categoryOptions) } as SpinnerAdapter
+            context?.let { ArrayAdapter(it, com.hbb20.R.layout.support_simple_spinner_dropdown_item, categoryOptions) } as SpinnerAdapter
         buyBinding.searchSpinner.adapter = categoryAdapter
         buyBinding.searchSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -98,7 +104,7 @@ class BuyFragment : Fragment() {
             }
 
         val searchWithAdapter =
-            context?.let {ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, searchWithOptions)} as SpinnerAdapter
+            context?.let {ArrayAdapter(it, com.hbb20.R.layout.support_simple_spinner_dropdown_item, searchWithOptions)} as SpinnerAdapter
         buyBinding.searchWith.adapter = searchWithAdapter
         buyBinding.searchWith.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {

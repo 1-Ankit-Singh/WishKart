@@ -10,13 +10,13 @@ import android.widget.SpinnerAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.androidproject.wishkart.R
 import com.androidproject.wishkart.adapter.ProductDonateAdapter
 import com.androidproject.wishkart.databinding.FragmentDonationsDetailsBinding
 import com.androidproject.wishkart.model.ProductDonate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.hbb20.R
 
 class DonationsDetailsFragment : Fragment() {
     // Initializing Variables
@@ -71,14 +71,20 @@ class DonationsDetailsFragment : Fragment() {
 
         donationsDetailsFragment.searchTap.setOnClickListener {
             if (!searchable){
-                donationsDetailsFragment.donateLinearLayout.visibility = View.VISIBLE
+                donationsDetailsFragment.donateLinearLayout1.visibility = View.VISIBLE
+                donationsDetailsFragment.donateLinearLayout2.visibility = View.VISIBLE
                 searchable = true
-                donationsDetailsFragment.searchTap.visibility = View.GONE
+                donationsDetailsFragment.searchTap.text = requireContext().getString(R.string.search_tap, "hide")
+            } else {
+                donationsDetailsFragment.donateLinearLayout1.visibility = View.GONE
+                donationsDetailsFragment.donateLinearLayout2.visibility = View.GONE
+                searchable = false
+                donationsDetailsFragment.searchTap.text = requireContext().getString(R.string.search_tap, "show")
             }
         }
 
         val categoryAdapter =
-            context?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, categoryOptions) } as SpinnerAdapter
+            context?.let { ArrayAdapter(it, com.hbb20.R.layout.support_simple_spinner_dropdown_item, categoryOptions) } as SpinnerAdapter
         donationsDetailsFragment.searchSpinner.adapter = categoryAdapter
         donationsDetailsFragment.searchSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -98,13 +104,7 @@ class DonationsDetailsFragment : Fragment() {
             }
 
         val searchWithAdapter =
-            context?.let {
-                ArrayAdapter(
-                    it,
-                    R.layout.support_simple_spinner_dropdown_item,
-                    searchWithOptions
-                )
-            } as SpinnerAdapter
+            context?.let { ArrayAdapter(it, com.hbb20.R.layout.support_simple_spinner_dropdown_item, searchWithOptions) } as SpinnerAdapter
         donationsDetailsFragment.searchWith.adapter = searchWithAdapter
         donationsDetailsFragment.searchWith.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -228,13 +228,8 @@ class DonationsDetailsFragment : Fragment() {
                     donationsDetailsFragment.nothingToShowHereImage.visibility = View.VISIBLE
                     donationsDetailsFragment.nothingToShowHereText.visibility = View.VISIBLE
                 }
-                donationsDetailsFragment.donationsRv.layoutManager =
-                    LinearLayoutManager(requireContext())
-                donationsDetailsFragment.donationsRv.adapter = ProductDonateAdapter(
-                    productDonateArrayList,
-                    requireContext(),
-                    "DonationsDetailsActivity"
-                )
+                donationsDetailsFragment.donationsRv.layoutManager = LinearLayoutManager(requireContext())
+                donationsDetailsFragment.donationsRv.adapter = ProductDonateAdapter(productDonateArrayList, requireContext(), "DonationsDetailsActivity")
                 donationsDetailsFragment.progressBarDonations.visibility = View.GONE
             }
             .addOnFailureListener {

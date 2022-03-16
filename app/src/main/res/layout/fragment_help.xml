@@ -1,8 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.help.HelpFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/menu_help"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/help_and_instructions"
+                android:textColor="@color/bluish_black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/loginAndProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_edit_text"
+                android:drawablePadding="8sp"
+                android:padding="4dp"
+                android:text="@string/login_and_profile_text"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_info" />
+
+            <TextView
+                android:id="@+id/loginAndProfileText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_below_doc"
+                android:paddingStart="32dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:text="Login and profile" />
+
+            <TextView
+                android:id="@+id/sell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_edit_text"
+                android:drawablePadding="8sp"
+                android:padding="4dp"
+                android:text="@string/sell_product_text"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_info" />
+
+            <TextView
+                android:id="@+id/sellText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_below_doc"
+                android:paddingStart="32dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:text="Sell" />
+
+            <TextView
+                android:id="@+id/buy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_edit_text"
+                android:drawablePadding="8sp"
+                android:padding="4dp"
+                android:text="@string/buy_product_text"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_info" />
+
+            <TextView
+                android:id="@+id/buyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_below_doc"
+                android:paddingStart="32dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:text="Buy" />
+
+            <TextView
+                android:id="@+id/donate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_edit_text"
+                android:drawablePadding="8sp"
+                android:padding="4dp"
+                android:text="@string/donate_product_text"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_info" />
+
+            <TextView
+                android:id="@+id/donateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_below_doc"
+                android:paddingStart="32dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:text="Donate" />
+
+            <TextView
+                android:id="@+id/donee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_edit_text"
+                android:drawablePadding="8sp"
+                android:padding="4dp"
+                android:text="@string/donee_text"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_info" />
+
+            <TextView
+                android:id="@+id/doneeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_below_doc"
+                android:paddingStart="32dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:text="Donee" />
+
+            <TextView
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_edit_text"
+                android:drawablePadding="8sp"
+                android:padding="4dp"
+                android:text="@string/note"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_info" />
+
+            <TextView
+                android:id="@+id/noteText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_below_doc"
+                android:paddingStart="32dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/bluish_black"
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:text="Note" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/contactUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:backgroundTint="@color/blue_200"
+                android:text="@string/contact_us"
+                android:textAllCaps="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="#bebebe" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@drawable/app_name"
+                app:srcCompat="@drawable/app_name" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
