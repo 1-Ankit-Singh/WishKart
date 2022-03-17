@@ -122,10 +122,8 @@
                     android:paddingEnd="20dp"
                     android:paddingBottom="10dp"
                     android:text="@string/next"
-                    android:textAllCaps="true"
                     android:textColor="#fff"
                     android:textSize="18sp"
-                    android:textStyle="normal"
                     app:cornerRadius="44dp" />
 
             </LinearLayout>

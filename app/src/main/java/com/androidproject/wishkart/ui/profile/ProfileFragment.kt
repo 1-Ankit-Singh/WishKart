@@ -1,30 +1,22 @@
 package com.androidproject.wishkart.ui.profile
 
-import android.Manifest
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.androidproject.wishkart.MainActivity
 import com.androidproject.wishkart.R
 import com.androidproject.wishkart.auth.UserTypeActivity
 import com.androidproject.wishkart.databinding.FragmentProfileBinding
-import com.google.android.gms.tasks.Continuation
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 
 class ProfileFragment : Fragment() {
@@ -58,25 +50,11 @@ class ProfileFragment : Fragment() {
         profileBinding.edit.setOnClickListener {
             editable = true
 
-            profileBinding.userStreetAddress.isClickable = true
-            profileBinding.userStreetAddress.isFocusableInTouchMode = true
-            profileBinding.userStreetAddress.isFocusable = true
-
-            profileBinding.userCity.isClickable = true
-            profileBinding.userCity.isFocusableInTouchMode = true
-            profileBinding.userCity.isFocusable = true
-
-            profileBinding.userPinCode.isClickable = true
-            profileBinding.userPinCode.isFocusableInTouchMode = true
-            profileBinding.userPinCode.isFocusable = true
-
-            profileBinding.userCountry.isClickable = true
-            profileBinding.userCountry.isFocusableInTouchMode = true
-            profileBinding.userCountry.isFocusable = true
-
-            profileBinding.userCertificate.isClickable = true
-            profileBinding.userCertificate.isFocusableInTouchMode = true
-            profileBinding.userCertificate.isFocusable = true
+            profileBinding.userAddress.visibility = View.GONE
+            profileBinding.userStreetAddress.visibility = View.VISIBLE
+            profileBinding.userCity.visibility = View.VISIBLE
+            profileBinding.userPinCode.visibility = View.VISIBLE
+            profileBinding.userCountry.visibility = View.VISIBLE
 
             profileBinding.cancelBtn.visibility = View.VISIBLE
             profileBinding.submitBtn.visibility = View.VISIBLE
@@ -86,25 +64,11 @@ class ProfileFragment : Fragment() {
             checkUserType()
             editable = false
 
-            profileBinding.userStreetAddress.isClickable = false
-            profileBinding.userStreetAddress.isFocusableInTouchMode = false
-            profileBinding.userStreetAddress.isFocusable = false
-
-            profileBinding.userCity.isClickable = false
-            profileBinding.userCity.isFocusableInTouchMode = false
-            profileBinding.userCity.isFocusable = false
-
-            profileBinding.userPinCode.isClickable = false
-            profileBinding.userPinCode.isFocusableInTouchMode = false
-            profileBinding.userPinCode.isFocusable = false
-
-            profileBinding.userCountry.isClickable = false
-            profileBinding.userCountry.isFocusableInTouchMode = false
-            profileBinding.userCountry.isFocusable = false
-
-            profileBinding.userCertificate.isClickable = false
-            profileBinding.userCertificate.isFocusableInTouchMode = false
-            profileBinding.userCertificate.isFocusable = false
+            profileBinding.userAddress.visibility = View.VISIBLE
+            profileBinding.userStreetAddress.visibility = View.GONE
+            profileBinding.userCity.visibility = View.GONE
+            profileBinding.userPinCode.visibility = View.GONE
+            profileBinding.userCountry.visibility = View.GONE
 
             profileBinding.cancelBtn.visibility = View.GONE
             profileBinding.submitBtn.visibility = View.GONE
@@ -125,17 +89,6 @@ class ProfileFragment : Fragment() {
 
         profileBinding.deleteAccount.setOnClickListener {
             deleteAccount()
-        }
-
-        profileBinding.userCertificateImage.setOnClickListener {
-            if (editable) {
-                checkPermissionForImage()
-            }
-        }
-        profileBinding.userCertificateText.setOnClickListener {
-            if (editable) {
-                checkPermissionForImage()
-            }
         }
 
         return profileBinding.root
@@ -262,24 +215,19 @@ class ProfileFragment : Fragment() {
 
         when {
             userName.isEmpty() -> {
-                Toast.makeText(requireContext(), "Please enter your name.", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Please enter your name.", Toast.LENGTH_SHORT).show()
             }
             userStreetAddress.isEmpty() -> {
-                Toast.makeText(requireContext(), "Please enter your street address.", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Please enter your street address.", Toast.LENGTH_SHORT).show()
             }
             userCity.isEmpty() -> {
-                Toast.makeText(requireContext(), "Please enter your city name.", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Please enter your city name.", Toast.LENGTH_SHORT).show()
             }
             userPincode.isEmpty() -> {
-                Toast.makeText(requireContext(), "Please enter your PinCode.", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Please enter your PinCode.", Toast.LENGTH_SHORT).show()
             }
             userCountry.isEmpty() -> {
-                Toast.makeText(requireContext(), "Please enter your country name.", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(), "Please enter your country name.", Toast.LENGTH_SHORT).show()
             }
             else -> {
                 database.collection("users").document(auth.uid.toString()).update(
@@ -310,7 +258,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun checkUserType() {
-        progressDialog = createProgressDialog("Loading Data")
+        progressDialog = createProgressDialog()
         progressDialog.show()
         ref.get().addOnSuccessListener {
             if (it.exists()) {
@@ -321,9 +269,10 @@ class ProfileFragment : Fragment() {
                     }
                     if (userType == "NGO") {
                         fetchNGOData()
-                        profileBinding.userCertificate.visibility = View.VISIBLE
+                        profileBinding.userCertificateImageText.visibility = View.VISIBLE
                         profileBinding.userCertificateImage.visibility = View.VISIBLE
                         profileBinding.userCertificateText.visibility = View.VISIBLE
+                        profileBinding.userCertificate.visibility = View.VISIBLE
                     }
                 }
             }
@@ -348,19 +297,16 @@ class ProfileFragment : Fragment() {
             userCertificateUrl = it.getString("userCertificateUrl").toString()
             userCertificateNumber = it.getString("userCertificateNumber").toString()
 
-            profileBinding.userName.setText(userName)
+            profileBinding.userName.text = userName
             profileBinding.userPhoneNumber.text = phoneNumber
-            profileBinding.userStreetAddress.setText(userStreetAddress)
-            profileBinding.userCity.setText(userCity)
-            profileBinding.userPinCode.setText(userPinCode)
-            profileBinding.userCountry.setText(userCountry)
+            profileBinding.userAddress.text = getString(R.string.address, userStreetAddress, userCity, userPinCode, userCountry)
             Picasso.get()
                 .load(userCertificateUrl)
                 .placeholder(R.drawable.user_ngo_certificate)
                 .error(R.drawable.user_ngo_certificate)
                 .into(profileBinding.userCertificateImage)
             profileBinding.userCertificateText.text = getString(R.string.your_ngo_certificate)
-            profileBinding.userCertificate.setText(userCertificateNumber)
+            profileBinding.userCertificate.text = userCertificateNumber
             progressDialog.dismiss()
         }.addOnFailureListener {
             Toast.makeText(
@@ -381,12 +327,9 @@ class ProfileFragment : Fragment() {
             userPinCode = it.getString("userPinCode").toString()
             userCountry = it.getString("userCountry").toString()
 
-            profileBinding.userName.setText(userName)
+            profileBinding.userName.text = userName
             profileBinding.userPhoneNumber.text = phoneNumber
-            profileBinding.userStreetAddress.setText(userStreetAddress)
-            profileBinding.userCity.setText(userCity)
-            profileBinding.userPinCode.setText(userPinCode)
-            profileBinding.userCountry.setText(userCountry)
+            profileBinding.userAddress.text = getString(R.string.address, userStreetAddress, userCity, userPinCode, userCountry)
             progressDialog.dismiss()
         }.addOnFailureListener {
             Toast.makeText(
@@ -398,93 +341,11 @@ class ProfileFragment : Fragment() {
 
     }
 
-    private fun checkPermissionForImage() {
-        if ((ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_DENIED)
-            && (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_DENIED)
-        ) {
-            val permission = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
-            val permissionWrite = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            requestPermissions(
-                permission,
-                1001
-            ) // GIVE AN INTEGER VALUE FOR PERMISSION_CODE_READ LIKE 1001
-            requestPermissions(
-                permissionWrite,
-                1002
-            ) // GIVE AN INTEGER VALUE FOR PERMISSION_CODE_WRITE LIKE 1002
-            Toast.makeText(
-                requireContext(),
-                "Please click on the certificate icon again to upload the certificate.",
-                Toast.LENGTH_LONG
-            ).show()
-        } else {
-            pickImageFromGallery()
-        }
-    }
-
-    private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(
-            intent,
-            1000
-        ) // GIVE AN INTEGER VALUE FOR IMAGE_PICK_CODE LIKE 1000
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == 1000) {
-            data?.data?.let {
-                profileBinding.userCertificateImage.setImageURI(it)
-                startUpload(it)
-            }
-        }
-    }
-
-    private fun startUpload(filePath: Uri) {
-        progressDialog = createProgressDialog("Uploading Image...")
-        progressDialog.show()
-        val ref = storage.reference.child("NGOCertificates/" + auth.uid.toString())
-        val uploadTask = ref.putFile(filePath)
-        uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    throw it
-                }
-            }
-            return@Continuation ref.downloadUrl
-        }).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                userCertificateUrl = task.result.toString()
-                progressDialog.dismiss()
-            } else {
-                // Handle failures
-                Toast.makeText(
-                    requireContext(),
-                    "Something went wrong. Please try again!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }.addOnFailureListener {
-            Toast.makeText(
-                requireContext(),
-                "Something went wrong. Please try again!",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
-    private fun createProgressDialog(message: String): ProgressDialog {
+    private fun createProgressDialog(): ProgressDialog {
         return ProgressDialog(requireContext()).apply {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
-            setMessage(message)
+            setMessage("Loading Data")
         }
     }
 }

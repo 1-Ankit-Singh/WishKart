@@ -265,17 +265,14 @@
                 android:id="@+id/donated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="@string/mark_as_donated"
-                android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                android:textStyle="normal"
                 app:cornerRadius="44dp" />
 
             <LinearLayout
@@ -318,17 +315,14 @@
                 android:id="@+id/notInterested"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="90dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="@string/not_interested"
-                android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="20sp"
-                android:textStyle="normal"
                 app:cornerRadius="44dp" />
 
         </LinearLayout>

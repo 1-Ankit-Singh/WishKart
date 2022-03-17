@@ -178,6 +178,7 @@
                     android:contentDescription="@drawable/user_ngo_certificate"
                     android:elevation="8dp"
                     android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:padding="2dp"
                     android:visibility="gone"
                     app:srcCompat="@drawable/user_ngo_certificate" />
@@ -231,7 +232,6 @@
                     android:paddingEnd="20dp"
                     android:paddingBottom="10dp"
                     android:text="@string/next"
-                    android:textAllCaps="true"
                     android:textColor="#fff"
                     android:textSize="20sp"
                     android:textStyle="normal"

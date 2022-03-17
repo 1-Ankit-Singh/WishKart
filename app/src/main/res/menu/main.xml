@@ -5,15 +5,18 @@
         android:id="@+id/yourDeals"
         android:orderInCategory="100"
         android:title="@string/your_deals"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/wishkart"/>
     <item
         android:id="@+id/notification"
         android:orderInCategory="100"
         android:title="@string/notification"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:visible="false"/>
     <item
         android:id="@+id/rateUs"
         android:orderInCategory="100"
         android:title="@string/rate_us"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:visible="false"/>
 </menu>

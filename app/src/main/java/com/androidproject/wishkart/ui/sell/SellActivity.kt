@@ -239,7 +239,7 @@ class SellActivity : AppCompatActivity() {
             ) // GIVE AN INTEGER VALUE FOR PERMISSION_CODE_WRITE LIKE 1002
             Toast.makeText(
                 this,
-                "Please click on the certificate icon again to upload the certificate.",
+                "Please click on the product icon again to upload the certificate.",
                 Toast.LENGTH_LONG
             ).show()
         } else {
