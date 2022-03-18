@@ -184,7 +184,7 @@ class DonateActivity : AppCompatActivity() {
 
     private fun addProductToDonateList(productDonate: ProductDonate) {
         database.collection("donate")
-            .document(auth.uid.toString()).set(productDonate)
+            .document("${auth.uid}$productCategory$productName").set(productDonate)
             .addOnSuccessListener {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

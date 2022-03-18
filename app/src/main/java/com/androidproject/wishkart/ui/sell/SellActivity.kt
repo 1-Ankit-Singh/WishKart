@@ -195,7 +195,7 @@ class SellActivity : AppCompatActivity() {
 
     private fun addProductToProductList(productSell: ProductSell) {
         database.collection("product")
-            .document(auth.uid.toString()).set(productSell)
+            .document("${auth.uid}$productCategory$productName").set(productSell)
             .addOnSuccessListener {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

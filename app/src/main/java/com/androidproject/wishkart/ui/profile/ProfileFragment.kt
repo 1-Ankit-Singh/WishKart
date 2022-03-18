@@ -16,14 +16,12 @@ import com.androidproject.wishkart.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 class ProfileFragment : Fragment() {
     // Initializing Variables
     private lateinit var profileBinding: FragmentProfileBinding
     private val auth = FirebaseAuth.getInstance()
-    private val storage = FirebaseStorage.getInstance()
     private val database = FirebaseFirestore.getInstance()
     private var ref: DocumentReference = database.collection("users").document(auth.uid!!)
     private var editable: Boolean = false
@@ -85,6 +83,8 @@ class ProfileFragment : Fragment() {
             if (userType == "NGO") {
                 updateNGOData()
             }
+            updateProductsList()
+            updateDonateList()
         }
 
         profileBinding.deleteAccount.setOnClickListener {
@@ -92,6 +92,44 @@ class ProfileFragment : Fragment() {
         }
 
         return profileBinding.root
+    }
+
+    private fun updateDonateList() {
+        val userCity = profileBinding.userCity.text.toString()
+        val userPincode = profileBinding.userPinCode.text.toString()
+        val userCountry = profileBinding.userCountry.text.toString()
+        database.collection("donate").document("${auth.uid}").update(
+            "productOwnerCity", userCity,
+            "productOwnerPinCode", userPincode,
+            "productOwnerCountry", userCountry
+        ).addOnSuccessListener {
+            // Do Nothing
+        }.addOnFailureListener {
+            Toast.makeText(
+                requireContext(),
+                "Something went wrong, Please try again !!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun updateProductsList() {
+        val userCity = profileBinding.userCity.text.toString()
+        val userPincode = profileBinding.userPinCode.text.toString()
+        val userCountry = profileBinding.userCountry.text.toString()
+        database.collection("donate").document("${auth.uid}").update(
+            "productOwnerCity", userCity,
+            "productOwnerPinCode", userPincode,
+            "productOwnerCountry", userCountry
+        ).addOnSuccessListener {
+            // Do Nothing
+        }.addOnFailureListener {
+            Toast.makeText(
+                requireContext(),
+                "Something went wrong, Please try again !!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun deleteAccount() {
@@ -177,9 +215,9 @@ class ProfileFragment : Fragment() {
                     .show()
             }
             else -> {
-                database.collection("users").document(auth.uid.toString()).update(
+                database.collection("users").document("${auth.uid}").update(
                     "userType", userType,
-                    "userType", userName,
+                    "userName", userName,
                     "userPhoneNumber", phoneNumber,
                     "userStreetAddress", userStreetAddress,
                     "userCity", userCity,
@@ -230,9 +268,9 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), "Please enter your country name.", Toast.LENGTH_SHORT).show()
             }
             else -> {
-                database.collection("users").document(auth.uid.toString()).update(
+                database.collection("users").document("${auth.uid}").update(
                     "userType", userType,
-                    "userType", userName,
+                    "userName", userName,
                     "userPhoneNumber", phoneNumber,
                     "userStreetAddress", userStreetAddress,
                     "userCity", userCity,
@@ -299,13 +337,16 @@ class ProfileFragment : Fragment() {
 
             profileBinding.userName.text = userName
             profileBinding.userPhoneNumber.text = phoneNumber
+            profileBinding.userStreetAddress.setText(userStreetAddress)
+            profileBinding.userCity.setText(userCity)
+            profileBinding.userPinCode.setText(userPinCode)
+            profileBinding.userCountry.setText(userCountry)
             profileBinding.userAddress.text = getString(R.string.address, userStreetAddress, userCity, userPinCode, userCountry)
             Picasso.get()
                 .load(userCertificateUrl)
                 .placeholder(R.drawable.user_ngo_certificate)
                 .error(R.drawable.user_ngo_certificate)
                 .into(profileBinding.userCertificateImage)
-            profileBinding.userCertificateText.text = getString(R.string.your_ngo_certificate)
             profileBinding.userCertificate.text = userCertificateNumber
             progressDialog.dismiss()
         }.addOnFailureListener {
@@ -329,6 +370,10 @@ class ProfileFragment : Fragment() {
 
             profileBinding.userName.text = userName
             profileBinding.userPhoneNumber.text = phoneNumber
+            profileBinding.userStreetAddress.setText(userStreetAddress)
+            profileBinding.userCity.setText(userCity)
+            profileBinding.userPinCode.setText(userPinCode)
+            profileBinding.userCountry.setText(userCountry)
             profileBinding.userAddress.text = getString(R.string.address, userStreetAddress, userCity, userPinCode, userCountry)
             progressDialog.dismiss()
         }.addOnFailureListener {

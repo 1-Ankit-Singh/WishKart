@@ -261,6 +261,13 @@
                 android:textColor="@color/bluish_black"
                 android:textSize="20sp" />
 
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/donated"
                 android:layout_width="match_parent"

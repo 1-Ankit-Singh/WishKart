@@ -262,6 +262,8 @@ class ProductGetterActivity : AppCompatActivity() {
         productImagesArrayList.add(productImages)
         if ((productStatus != "Available") and (productStatus != "Dealing")) {
             productGetterBinding.notInterested.visibility = View.GONE
+            productGetterBinding.donated.visibility = View.GONE
+            productGetterBinding.view.visibility = View.VISIBLE
         }
     }
 

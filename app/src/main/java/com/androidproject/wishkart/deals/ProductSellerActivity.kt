@@ -129,7 +129,7 @@ class ProductSellerActivity : AppCompatActivity() {
                                 "Do you want to keep this product in your list or want to remove the it?")
                     }
                    if (productStatus == auth.uid) {
-                        showAlertDialogBox("Congratulations", "Donor donated the product to you. " +
+                        showAlertDialogBox("Congratulations", "Seller sold the product to you. " +
                                 "Do you want to keep this product in your list or want to remove the record?")
                     }
                 }
@@ -264,6 +264,10 @@ class ProductSellerActivity : AppCompatActivity() {
         uid = intent.getStringExtra("uid").toString()
         val productImages = ProductImages(productUrl1, productUrl2, productUrl3, productUrl4)
         productImagesArrayList.add(productImages)
+        if ((productStatus != "Available") and (productStatus != "Dealing")) {
+            productSellerBinding.notInterested.visibility = View.GONE
+            productSellerBinding.view.visibility = View.VISIBLE
+        }
         checkSellerInterest()
     }
 

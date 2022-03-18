@@ -259,6 +259,10 @@ class InterestDetailsActivity : AppCompatActivity() {
         uid = intent.getStringExtra("uid").toString()
         val productImages = ProductImages(productUrl1, productUrl2, productUrl3, productUrl4)
         productImagesArrayList.add(productImages)
+        if ((productStatus != "Available") and (productStatus != "Dealing")) {
+            interestDetailsBinding.notInterested.visibility = View.GONE
+            interestDetailsBinding.view.visibility = View.VISIBLE
+        }
         checkDonorInterest()
     }
 

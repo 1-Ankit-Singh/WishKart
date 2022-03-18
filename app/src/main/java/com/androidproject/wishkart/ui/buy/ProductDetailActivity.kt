@@ -209,7 +209,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun upDateProductStatusInProductList() {
         database.collection("product")
-            .document(uid).update(
+            .document("$uid$productCategory$productName").update(
                 "productStatus", productStatus
             ).addOnSuccessListener {
                 Toast.makeText(

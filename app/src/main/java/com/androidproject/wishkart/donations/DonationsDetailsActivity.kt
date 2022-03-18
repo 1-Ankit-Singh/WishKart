@@ -207,7 +207,7 @@ class DonationsDetailsActivity : AppCompatActivity() {
 
     private fun upDateProductStatusInProductList() {
         database.collection("donate")
-            .document(uid).update(
+            .document("$uid$productCategory$productName").update(
             "productStatus", productStatus
         ).addOnSuccessListener {
             Toast.makeText(
