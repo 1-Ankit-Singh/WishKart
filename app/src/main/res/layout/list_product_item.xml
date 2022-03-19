@@ -22,9 +22,8 @@
                 android:id="@+id/product"
                 android:layout_width="124dp"
                 android:layout_height="wrap_content"
-                android:background="@color/bluish_black"
+                android:background="@color/gray_dark"
                 android:contentDescription="@string/product_name"
-                android:scaleType="fitXY"
                 android:src="@drawable/user_product" />
 
             <TextView
@@ -90,6 +89,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="4dp"
                 android:padding="4dp"
+                android:maxEms="6"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:text="@string/product_location"
                 android:textColor="@color/bluish_black"
                 android:textSize="14sp"

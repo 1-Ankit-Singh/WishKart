@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.androidproject.wishkart.MainActivity
 import com.androidproject.wishkart.R
 import com.androidproject.wishkart.auth.UserTypeActivity
 import com.androidproject.wishkart.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
@@ -35,6 +35,10 @@ class ProfileFragment : Fragment() {
     private lateinit var userCertificateUrl: String
     private lateinit var userCertificateNumber: String
     private lateinit var progressDialog: ProgressDialog
+    private var productNameArrayList = arrayListOf<String>()
+    private var productCategoryArrayList = arrayListOf<String>()
+    private var donationNameArrayList = arrayListOf<String>()
+    private var donationCategoryArrayList = arrayListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +48,8 @@ class ProfileFragment : Fragment() {
         profileBinding = FragmentProfileBinding.inflate(inflater)
 
         checkUserType()
+        getProductsName()
+        getDonationsName()
 
         profileBinding.edit.setOnClickListener {
             editable = true
@@ -83,8 +89,6 @@ class ProfileFragment : Fragment() {
             if (userType == "NGO") {
                 updateNGOData()
             }
-            updateProductsList()
-            updateDonateList()
         }
 
         profileBinding.deleteAccount.setOnClickListener {
@@ -94,42 +98,122 @@ class ProfileFragment : Fragment() {
         return profileBinding.root
     }
 
-    private fun updateDonateList() {
-        val userCity = profileBinding.userCity.text.toString()
-        val userPincode = profileBinding.userPinCode.text.toString()
-        val userCountry = profileBinding.userCountry.text.toString()
-        database.collection("donate").document("${auth.uid}").update(
-            "productOwnerCity", userCity,
-            "productOwnerPinCode", userPincode,
-            "productOwnerCountry", userCountry
-        ).addOnSuccessListener {
-            // Do Nothing
-        }.addOnFailureListener {
-            Toast.makeText(
-                requireContext(),
-                "Something went wrong, Please try again !!",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+    private fun getDonationsName() {
+        donationNameArrayList.clear()
+        database.collection("donate")
+            .get()
+            .addOnSuccessListener {
+                val list: List<DocumentSnapshot> = it.documents
+                for (product in list) {
+                    if (auth.uid!! == product.getString("uid").toString()) {
+                        val donationName = product.getString("productName").toString()
+                        val donationCategory = product.getString("productCategory").toString()
+                        donationNameArrayList.add(donationName)
+                        donationCategoryArrayList.add(donationCategory)
+                    }
+                }
+            }.addOnFailureListener {
+                //Do Nothing
+            }
     }
 
-    private fun updateProductsList() {
+    private fun getProductsName() {
+        productNameArrayList.clear()
+        database.collection("product")
+            .get()
+            .addOnSuccessListener {
+                val list: List<DocumentSnapshot> = it.documents
+                for (product in list) {
+                    if (auth.uid!! == product.getString("uid").toString()) {
+                        val productName = product.getString("productName").toString()
+                        val productCategory = product.getString("productCategory").toString()
+                        productNameArrayList.add(productName)
+                        productCategoryArrayList.add(productCategory)
+                    }
+                }
+            }.addOnFailureListener {
+                //Do Nothing
+            }
+    }
+
+    private fun updateDonateList(): Boolean {
         val userCity = profileBinding.userCity.text.toString()
         val userPincode = profileBinding.userPinCode.text.toString()
         val userCountry = profileBinding.userCountry.text.toString()
-        database.collection("donate").document("${auth.uid}").update(
-            "productOwnerCity", userCity,
-            "productOwnerPinCode", userPincode,
-            "productOwnerCountry", userCountry
-        ).addOnSuccessListener {
-            // Do Nothing
-        }.addOnFailureListener {
-            Toast.makeText(
-                requireContext(),
-                "Something went wrong, Please try again !!",
-                Toast.LENGTH_SHORT
-            ).show()
+        var completed = false
+        for (i in donationNameArrayList.indices) {
+            database.collection("donate")
+                .document("${auth.uid}${donationCategoryArrayList[i]}${donationNameArrayList[i]}").update(
+                "productOwnerCity", userCity,
+                "productOwnerPinCode", userPincode,
+                "productOwnerCountry", userCountry
+            ).addOnSuccessListener {
+                completed = true
+            }.addOnFailureListener {
+                completed = false
+            }
         }
+        return completed
+    }
+
+    private fun updateOwnerDonateList(): Boolean {
+        val userCity = profileBinding.userCity.text.toString()
+        val userPincode = profileBinding.userPinCode.text.toString()
+        val userCountry = profileBinding.userCountry.text.toString()
+        var completed = false
+        for (i in donationNameArrayList.indices) {
+            database.collection("users/${auth.uid.toString()}/donate")
+                .document("${donationCategoryArrayList[i]}${donationNameArrayList[i]}").update(
+                "productOwnerCity", userCity,
+                "productOwnerPinCode", userPincode,
+                "productOwnerCountry", userCountry
+            ).addOnSuccessListener {
+                    completed = true
+            }.addOnFailureListener {
+                    completed = false
+            }
+        }
+        return completed
+    }
+
+    private fun updateProductsList(): Boolean {
+        val userCity = profileBinding.userCity.text.toString()
+        val userPincode = profileBinding.userPinCode.text.toString()
+        val userCountry = profileBinding.userCountry.text.toString()
+        var completed = false
+        for (i in productNameArrayList.indices) {
+            database.collection("product")
+                .document("${auth.uid}${productCategoryArrayList[i]}${productNameArrayList[i]}").update(
+                "productOwnerCity", userCity,
+                "productOwnerPinCode", userPincode,
+                "productOwnerCountry", userCountry
+            ).addOnSuccessListener {
+                    completed = true
+            }.addOnFailureListener {
+                    completed = false
+            }
+        }
+        return completed
+    }
+
+    private fun updateOwnerProductsList(): Boolean {
+        val userCity = profileBinding.userCity.text.toString()
+        val userPincode = profileBinding.userPinCode.text.toString()
+        val userCountry = profileBinding.userCountry.text.toString()
+        var completed = false
+        for (i in productNameArrayList.indices) {
+            database.collection("users/${auth.uid.toString()}/products")
+                .document("${productCategoryArrayList[i]}${productNameArrayList[i]}").update(
+                    "productOwnerCity", userCity,
+                    "productOwnerPinCode", userPincode,
+                    "productOwnerCountry", userCountry
+                ).addOnSuccessListener {
+                    completed = true
+                }.addOnFailureListener {
+                    completed = false
+                }
+        }
+        return completed
     }
 
     private fun deleteAccount() {
@@ -226,13 +310,26 @@ class ProfileFragment : Fragment() {
                     "userCertificateUrl", userCertificateUrl,
                     "userCertificateNumber", userCertificateNumber
                 ).addOnSuccessListener {
+                    updateProductsList()
+                    updateOwnerProductsList()
+                    updateDonateList()
+                    updateOwnerDonateList()
                     Toast.makeText(
                         requireContext(),
                         "Profile Updated Successfully.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    activity?.startActivity(Intent(requireContext(), MainActivity::class.java))
-                    activity?.finish()
+                    checkUserType()
+                    editable = false
+
+                    profileBinding.userAddress.visibility = View.VISIBLE
+                    profileBinding.userStreetAddress.visibility = View.GONE
+                    profileBinding.userCity.visibility = View.GONE
+                    profileBinding.userPinCode.visibility = View.GONE
+                    profileBinding.userCountry.visibility = View.GONE
+
+                    profileBinding.cancelBtn.visibility = View.GONE
+                    profileBinding.submitBtn.visibility = View.GONE
                 }.addOnFailureListener {
                     Toast.makeText(
                         requireContext(),
@@ -277,13 +374,26 @@ class ProfileFragment : Fragment() {
                     "userPinCode", userPincode,
                     "userCountry", userCountry
                 ).addOnSuccessListener {
+                    updateProductsList()
+                    updateOwnerProductsList()
+                    updateDonateList()
+                    updateOwnerDonateList()
                     Toast.makeText(
                         requireContext(),
                         "Profile Updated Successfully.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    activity?.startActivity(Intent(requireContext(), MainActivity::class.java))
-                    activity?.finish()
+                    checkUserType()
+                    editable = false
+
+                    profileBinding.userAddress.visibility = View.VISIBLE
+                    profileBinding.userStreetAddress.visibility = View.GONE
+                    profileBinding.userCity.visibility = View.GONE
+                    profileBinding.userPinCode.visibility = View.GONE
+                    profileBinding.userCountry.visibility = View.GONE
+
+                    profileBinding.cancelBtn.visibility = View.GONE
+                    profileBinding.submitBtn.visibility = View.GONE
                 }.addOnFailureListener {
                     Toast.makeText(
                         requireContext(),
