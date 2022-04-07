@@ -87,7 +87,7 @@ class HelpFragment : Fragment() {
                             "\n2. You can show interest to buy products by clicking on interested button in the product detail screen." +
                             "\n3. In whichever product you have shown your interest that will be listed in buy section of the WishKart area." +
                             "\n4. You can mark the product as not interested whenever you change your mind to not to buy that product." +
-                            "\n5. You can contact seller and can buy the product." +
+                            "\n5. Seller will contact you regarding the product. You can't contact the seller directly for security reasons." +
                             "\n6. You will be notified when you come back to that product details page, if the product is sold to other user, " +
                             "seller is not interested to sell that product to you or if sold to you."
                 helpBinding.buyText.text = getString(R.string.buy_product, buy)
@@ -129,7 +129,7 @@ class HelpFragment : Fragment() {
                             "\n2. You can show interest in products by clicking on interested button in the product detail screen." +
                             "\n3. In whichever product you have shown your interest that will be listed in interest section of the donations area." +
                             "\n4. You can mark the product as not interested whenever you change your mind to not to take that product." +
-                            "\n5. You can contact donor and can get the product." +
+                            "\n5. Donor will contact you regarding the product. You can't contact the donor directly for security reasons." +
                             "\n6. You will be notified when you come back to that product details page, if the product is donated to other NGO, " +
                             "donor is not interested to donate that product to you or if donated to you."
                 helpBinding.doneeText.text = getString(R.string.donee, donee)
