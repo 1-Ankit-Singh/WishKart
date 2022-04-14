@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.androidproject.wishkart.R
+import com.androidproject.wishkart.auth.PHONE_NUMBER
 import com.androidproject.wishkart.auth.UserTypeActivity
 import com.androidproject.wishkart.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -89,6 +90,14 @@ class ProfileFragment : Fragment() {
             if (userType == "NGO") {
                 updateNGOData()
             }
+        }
+
+        profileBinding.updateNumber.setOnClickListener {
+            val phoneNumberText = profileBinding.userPhoneNumber.text.toString()
+            startActivity(
+                Intent(requireContext(), UpdatePhoneNumberActivity::class.java)
+                    .putExtra(PHONE_NUMBER, phoneNumberText)
+            )
         }
 
         profileBinding.deleteAccount.setOnClickListener {

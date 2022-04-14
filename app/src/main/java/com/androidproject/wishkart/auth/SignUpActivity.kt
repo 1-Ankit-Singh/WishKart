@@ -46,14 +46,16 @@ class SignUpActivity : AppCompatActivity() {
 
         if (userType == "NGO") {
             signUpActivity.userCertificate.visibility = View.VISIBLE
+            signUpActivity.userCertificateHint.visibility = View.VISIBLE
             signUpActivity.userCertificateImage.visibility = View.VISIBLE
-            signUpActivity.userCertificateText.visibility = View.VISIBLE
+            signUpActivity.userCertificateImageHint.visibility = View.VISIBLE
+            signUpActivity.userCertificateImageText.visibility = View.VISIBLE
         }
 
         signUpActivity.userCertificateImage.setOnClickListener {
             checkPermissionForImage()
         }
-        signUpActivity.userCertificateText.setOnClickListener {
+        signUpActivity.userCertificateImageText.setOnClickListener {
             checkPermissionForImage()
         }
 

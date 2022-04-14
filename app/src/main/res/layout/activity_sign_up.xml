@@ -22,7 +22,6 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +31,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="28dp"
                     android:text="@string/profile_info"
                     android:textColor="@color/pink"
@@ -41,6 +41,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-condensed"
                     android:gravity="center"
@@ -49,13 +50,23 @@
                     android:textSize="16sp" />
 
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/name"
+                    android:textColor="@color/bluish_black"
+                    android:textSize="16sp" />
+
                 <EditText
                     android:id="@+id/userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/background_edit_text"
                     android:drawableStart="@drawable/ic_person"
@@ -70,12 +81,22 @@
                     android:textSize="20sp" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/phone_number"
+                    android:textColor="@color/bluish_black"
+                    android:textSize="16sp" />
+
+                <TextView
                     android:id="@+id/userPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/background_edit_text"
                     android:drawablePadding="8dp"
@@ -86,13 +107,23 @@
                     android:textSize="20sp"
                     app:drawableStartCompat="@drawable/ic_contact" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/street_address"
+                    android:textColor="@color/bluish_black"
+                    android:textSize="16sp" />
+
                 <EditText
                     android:id="@+id/userStreetAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/background_edit_text"
                     android:drawableStart="@drawable/ic_location"
@@ -106,13 +137,23 @@
                     android:padding="8dp"
                     android:textSize="20sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/city"
+                    android:textColor="@color/bluish_black"
+                    android:textSize="16sp" />
+
                 <EditText
                     android:id="@+id/userCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/background_edit_text"
                     android:drawableStart="@drawable/ic_location"
@@ -126,13 +167,23 @@
                     android:singleLine="true"
                     android:textSize="20sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/pincode"
+                    android:textColor="@color/bluish_black"
+                    android:textSize="16sp" />
+
                 <EditText
                     android:id="@+id/userPinCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/background_edit_text"
                     android:drawableStart="@drawable/ic_location"
@@ -145,6 +196,16 @@
                     android:padding="8dp"
                     android:singleLine="true"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/country"
+                    android:textColor="@color/bluish_black"
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/userCountry"
@@ -166,12 +227,24 @@
                     android:singleLine="true"
                     android:textSize="20sp" />
 
+                <TextView
+                    android:id="@+id/userCertificateImageHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/ngo_certificate"
+                    android:textColor="@color/bluish_black"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
                 <ImageView
                     android:id="@+id/userCertificateImage"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/background_above_doc"
                     android:clickable="true"
@@ -184,7 +257,7 @@
                     app:srcCompat="@drawable/user_ngo_certificate" />
 
                 <TextView
-                    android:id="@+id/userCertificateText"
+                    android:id="@+id/userCertificateImageText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -200,13 +273,25 @@
                     android:textSize="20sp"
                     android:visibility="gone" />
 
+                <TextView
+                    android:id="@+id/userCertificateHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/certificate_number"
+                    android:textColor="@color/bluish_black"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
                 <EditText
                     android:id="@+id/userCertificate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/background_edit_text"
                     android:drawableStart="@drawable/ic_certificate"

@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WishKart">
         <activity
+            android:name=".ui.profile.UpdatePhoneNumberActivity"
+            android:exported="false" />
+        <activity
             android:name=".donations.InterestDetailsActivity"
             android:exported="false" />
         <activity
@@ -29,8 +32,8 @@
             android:exported="false" />
         <activity
             android:name=".donations.DonationsActivity"
-            android:noHistory="true"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name=".ui.buy.ProductDetailActivity"
             android:exported="false" />
@@ -48,8 +51,8 @@
             android:exported="false" />
         <activity
             android:name=".deals.DealsActivity"
-            android:noHistory="true"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
