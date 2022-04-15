@@ -268,11 +268,38 @@
                     android:visibility="gone"
                     app:drawableStartCompat="@drawable/ic_certificate" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/updateNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:backgroundTint="@color/gray_dark"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/update_number"
+                    android:textColor="@color/gray_light"
+                    android:textSize="16sp"
+                    app:cornerRadius="44dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="#bebebe" />
+
                 <LinearLayout
                     android:id="@+id/linearLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
@@ -307,25 +334,8 @@
                         android:textSize="20sp"
                         android:visibility="gone"
                         app:cornerRadius="44dp" />
-                </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/updateNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:backgroundTint="@color/gray_dark"
-                    android:paddingStart="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="20dp"
-                    android:paddingBottom="10dp"
-                    android:text="@string/update_number"
-                    android:textColor="@color/gray_light"
-                    android:textSize="16sp"
-                    android:visibility="gone"
-                    app:cornerRadius="44dp" />
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/deleteAccount"

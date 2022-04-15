@@ -14,7 +14,8 @@
         android:theme="@style/Theme.WishKart">
         <activity
             android:name=".ui.profile.UpdatePhoneNumberActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:noHistory="true" />
         <activity
             android:name=".donations.InterestDetailsActivity"
             android:exported="false" />

@@ -44,8 +44,7 @@ class LoginActivity : AppCompatActivity() {
                         "Is this OK, or would you like to edit the number?"
             )
         } else {
-            Toast.makeText(this, "Please enter a valid number to continue!", Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(this, "Please enter a valid number to continue!", Toast.LENGTH_SHORT).show()
         }
     }
 

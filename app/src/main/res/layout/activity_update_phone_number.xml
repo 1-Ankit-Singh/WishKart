@@ -20,7 +20,7 @@
         app:title="Update Phone Number" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -29,6 +29,81 @@
         android:paddingTop="16dp"
         android:paddingRight="16dp"
         android:paddingBottom="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarUpdatePhoneNumber">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_new_phone_number"
+            android:textColor="@color/pink"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:ccp_autoDetectCountry="true"
+                app:ccp_showNameCode="false"
+                tools:ccp_contentColor="#fcfdfd"
+                tools:ccp_textSize="20dp" />
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:hint="@string/enter_phone_number"
+                android:imeActionId="6"
+                android:imeActionLabel="Send"
+                android:imeOptions="actionUnspecified"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/pink_light"
+            android:padding="12dp"
+            android:text="@string/next"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            app:cornerRadius="44dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutOTP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarUpdatePhoneNumber">
@@ -42,31 +117,19 @@
             android:textStyle="bold"
             tools:text="Verify +919818170957" />
 
-        <TextView
-            android:id="@+id/counter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="4dp"
-            android:textSize="16sp" />
-
         <EditText
             android:id="@+id/sentCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:gravity="center"
             android:hint="@string/hint"
-            android:imeActionId="6"
-            android:imeActionLabel="Send"
-            android:imeOptions="actionUnspecified"
             android:inputType="phone"
-            android:letterSpacing="0.8"
+            android:letterSpacing="1"
             android:maxLength="6"
             android:maxLines="1"
             android:padding="10dp"
             android:singleLine="true"
-            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
@@ -81,20 +144,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:padding="15dp"
+            android:backgroundTint="@color/pink_light"
+            android:padding="12dp"
             android:text="@string/verify"
-            android:textColor="#fff"
-            android:textSize="16sp"
-            app:cornerRadius="44dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/reSend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:enabled="false"
-            android:padding="15dp"
-            android:text="@string/resend_sms"
             android:textColor="#fff"
             android:textSize="16sp"
             app:cornerRadius="44dp" />
