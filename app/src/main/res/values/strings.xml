@@ -105,5 +105,5 @@
     <string name="donee_text">Donee</string>
     <string name="note">Note</string>
     <string name="update_number">Update Number</string>
-    <string name="enter_new_phone_number">Enter New phone Number</string>
+    <string name="enter_new_phone_number">Enter new phone number</string>
 </resources>

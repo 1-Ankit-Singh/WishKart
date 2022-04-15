@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.androidproject.wishkart.MainActivity
 import com.androidproject.wishkart.R
@@ -38,7 +39,7 @@ class UpdatePhoneNumberActivity : AppCompatActivity() {
         updatePhoneNumberBinding.next.setOnClickListener {
             countryCode = updatePhoneNumberBinding.ccp.selectedCountryCodeWithPlus
             phoneNumber = countryCode + updatePhoneNumberBinding.phoneNumber.text.toString().trim()
-            if (phoneNumber?.isNotEmpty() == true) {
+            if (phoneNumber!!.isNotEmpty() && phoneNumber!!.length == 13) {
                 updatePhoneNumberBinding.linearLayoutNumber.visibility = View.GONE
                 updatePhoneNumberBinding.linearLayoutOTP.visibility = View.VISIBLE
                 initView()
@@ -117,6 +118,8 @@ class UpdatePhoneNumberActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
+                updatePhoneNumberBinding.linearLayoutNumber.visibility = View.VISIBLE
+                updatePhoneNumberBinding.linearLayoutOTP.visibility = View.GONE
             }
 
             override fun onCodeSent(
@@ -183,7 +186,30 @@ class UpdatePhoneNumberActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     override fun onBackPressed() {
-        Toast.makeText(this, "Can't go back.", Toast.LENGTH_SHORT).show()
+        confirmation()
+    }
+
+    private fun confirmation() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("WishKart")
+        builder.setMessage("Are you sure, you do not want to update your phone number?")
+        builder.setPositiveButton(
+            "Yes"
+        ) { _, _ ->
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+        builder.setNegativeButton(
+            "No"
+        ) { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 }
