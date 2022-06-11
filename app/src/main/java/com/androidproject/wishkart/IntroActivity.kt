@@ -39,7 +39,7 @@ class IntroActivity : AppIntro2() {
     private fun showIntroSlides() {
         val introOne = SliderPagerBuilder()
             .title("Welcome")
-            .description("Welcome to WishKart\n\nSell, purchase, donate and exchange items\nwithout any hassle")
+            .description("Welcome to WishKart\n\nSell, purchase and donate\nwithout any hassle")
             .imageDrawable(R.drawable.logo)
             .backgroundColorRes(R.color.pink_light)
             .build()

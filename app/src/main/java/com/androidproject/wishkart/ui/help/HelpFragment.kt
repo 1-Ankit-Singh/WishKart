@@ -108,7 +108,7 @@ class HelpFragment : Fragment() {
                             "\n2. You can see all the product you added for donating in the donate section." +
                             "\n3. In case you want to delete the added product, you can do so by clicking on the particular product item and remove " +
                             "product button will be shown at the bottom of the product details screen." +
-                            "\n4. Whenever any any NGO will show interest in your product then, that will be listed in donate section of WishKart area." +
+                            "\n4. Whenever any NGO will show interest in your product then, that will be listed in donate section of WishKart area." +
                             "\n5. You can mark the product as donated or not interested as per your choice, after discussing personally by " +
                             "contacting each other with the given contact details."
                 helpBinding.donateText.text = getString(R.string.donate_product, donate)
@@ -148,7 +148,7 @@ class HelpFragment : Fragment() {
                     "The WishKart doest not provide any payment option to buy, sell products. You are solely responsible for selling, " +
                             "buying and donating products. You can contact seller, buyer and NGO by the given contact number and verify the NGO " +
                             "via their Certificate number. WishKart just provide you a platform where you can show the products to others that you " +
-                            "want to sell and donate products which your are not using but someone else can use, as this will help need-ies a lot. " +
+                            "want to sell and donate products which you are not using but someone else can use, as this will help need-ies a lot. " +
                             "and buy second hand or refurbished products. So, WishKart not responsible for anything, you need to take care of " +
                             "payments and other security or fraud related issues."
                 helpBinding.noteText.text = note
